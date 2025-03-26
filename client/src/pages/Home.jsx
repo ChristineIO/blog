@@ -1,24 +1,23 @@
+import { Link } from 'react-router-dom';
 import Post from '../components/Post'
 
 const Home = () => {
-    console.log("HGGF")
     return (
         <div>
             <div className='navbar'>
 
                 <div className='logo'>
-                    <h1>Blog</h1>
+                    <h1><Link to='/' className='logo'>Blog</Link></h1>
                 </div>
 
                 <div className='auth-buttons'>
-                    <a>Sign up</a>
+                    <Link to='/signup'>Sign up</Link>
                     <a>Login</a>
                 </div>
-
-                <div className='posts'>
-                    <Post />
-                </div>
             </div>
+            <div className='posts'>
+                     <Post />
+                </div>
         </div>
     )
 }
