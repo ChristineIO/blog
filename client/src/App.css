@@ -26,7 +26,7 @@ body {
   color: #f8f8f8;
 }
 
-.auth-buttons a {
+.auth-btn {
   background-color: white;
   color: pink;
   font-weight: bold;
@@ -36,10 +36,17 @@ body {
   margin: 8px;
   text-decoration: none;
 }
-.auth-buttons a:hover {
+
+.auth-btn:hover {
   background-color: #BF4974;
   color: white;
   cursor: pointer;
+}
+
+.post-btn {
+  position: absolute;
+  top: 18px;
+  right: 66%;
 }
 
 .posts {
