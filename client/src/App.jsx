@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Home from './pages/Home'
 import SignupPage from './pages/Signup'
+import LoginPage from './pages/LoginPage'
+
 import './App.css'
 import axios from "axios"
 
@@ -24,6 +26,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path='/home' element={<Home />} />
         <Route path='/signup' element={<SignupPage />} />
+        <Route path='/login' element={<LoginPage />} />
       </Routes>
     </Router>
   )
