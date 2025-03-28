@@ -1,0 +1,10 @@
+.toggle-theme{
+  background-color: transparent;
+  border: none;
+  font-size: 25px;
+  color: #BF2C47;
+  top: 27px;
+  right: 30%;
+  position: absolute;
+  cursor: pointer;
+}

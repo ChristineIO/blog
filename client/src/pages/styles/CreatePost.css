@@ -1,0 +1,20 @@
+.post-form {
+    margin-left: auto;
+    display: grid;
+    justify-items: center;
+    flex: calc(90% - 15px);
+}
+
+.post-text {
+    border: 3px solid var(--grungy-red);
+    border-radius: 8px;
+    box-shadow: 0.1px 0.1px 5px var(--grungy-red);
+    padding: 0 0 5% 1%;
+    margin-top: 10px;
+    width: 85%;
+    max-width: 100%;
+    resize: vertical;
+    height: 20rem;
+    font-size: larger;
+    font-family: 'Sour Gummy', Arial, Helvetica, sans-serif;
+}

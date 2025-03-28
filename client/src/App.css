@@ -1,34 +1,64 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Delius&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root[data-theme = "light"] {
+  --light-coral: #F7818Fff;
+  --cherry-blossom-pink: rgb(253, 186, 197);
+  --cherry-blossom-pink-dark: rgb(218, 100, 119);
+  --pink-lavender: #E9C1E9ff;
+  --fire-engine-red: #C60F1Bff;
+  --indian-red: #E84D5Aff;
+  --grungy-red: #a61453;
+  --blue-text: #F6FFFD;
+  --background: #ffffff;
+  --text-color: #500000;
+}
+
+:root[data-theme = "dark"] {
+  --light-coral: #8B3A44;
+  --cherry-blossom-pink: rgb(122, 50, 65);
+  --cherry-blossom-pink-dark: rgb(100, 35, 49);
+  --pink-lavender: #61385B;
+  --fire-engine-red: #de3f4a;
+  --indian-red: #9E2B38;
+  --grungy-red: #5E0F2A;
+  --blue-text: #edffff;
+  --background: #120000;
+  --text-color: #f5e5e5;
+}
 
 body {
   margin: 0;
-  font-family: 'Delius', 'Noto Sans' Arial, Helvetica, sans-serif;
+  font-family: 'Delius', 'Noto Sans'Arial, Helvetica, sans-serif;
+  color: var(--blue-text);
+  background-color: var(--background);
+  color: var(--text-color);
 }
+
 .navbar {
-  background-color: pink;
+  background-color: var(--cherry-blossom-pink);
   height: 80px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: aliceblue;
+  color: var(--pink-lavender);
   text-align: center;
   padding: 0 10% 0 5%;
+  font-family: 'Delius', Arial, Helvetica, sans-serif;
 }
 
 .logo {
   text-align: center;
   flex-grow: 0.5;
-  text-shadow: -3px -1px 0 coral;
+  text-shadow: -3px -1px 0 var(--indian-red);
   cursor: pointer;
   text-decoration: dashed;
-  color: #f8f8f8;
+  color: var(--blue-text);
 }
 
 .auth-btn {
   background-color: white;
-  color: pink;
+  color: var(--light-coral);
   font-weight: bold;
   padding: 8px 15px;
   border-radius: 20px;
@@ -44,9 +74,12 @@ body {
 }
 
 .post-btn {
-  position: absolute;
-  top: 18px;
-  right: 66%;
+  display: flex;
+  position: relative;
+  flex-grow: 5;
+  font-size: 14px;
+  text-align: center;
+  align-items: center;
 }
 
 .posts {
@@ -57,7 +90,7 @@ body {
   justify-self: anchor-center;
   align-content: center;
   font-family: 'Sour Gummy', Arial, Helvetica, sans-serif;
-  color: #A61420;
+  color: var(--text-color);
   padding-top: 77px;
   min-height: 500px;
   padding: 10px;
@@ -68,12 +101,17 @@ body {
   flex-direction: column;
   width: 30%;
   min-height: 250px;
-  border: 2px solid #ff6db1;
+  border: 3px solid var(--cherry-blossom-pink-dark);
   border-radius: 25px;
   margin: 25px 15px 5px 15px;
   padding: 15px;
   flex: 1 1 calc(30% - 15px);
+  box-shadow: 2px 4px 25px var(--cherry-blossom-pink);
+}
 
+.post-content {
+  text-transform: capitalize;
+  text-overflow: ellipsis;
 }
 
 .post-info {
@@ -83,7 +121,7 @@ body {
   margin-top: auto;
 }
 
-@media  screen and (max-width: 1090px) {
+@media screen and (max-width: 1090px) {
   .post {
     display: flexbox;
     flex: calc(80% - 15px);
@@ -98,14 +136,14 @@ body {
   text-align: left;
   flex-direction: column;
   font-family: 'Delius', Arial, Helvetica, sans-serif;
-  color: #a61453;
+  color: var(--grungy-red);
 }
 
 .auth-box-content {
   border-radius: 25px;
-  border: 2px solid #a61464;
+  border: 2px solid var(--grungy-red);
   padding: 10px 60px 55px 60px;
-  box-shadow: 2px 4px 25px #A61420;
+  box-shadow: 2px 4px 25px var(--fire-engine-red);
 }
 
 .input-field {
@@ -116,20 +154,20 @@ body {
   position: relative;
 }
 
-.input-field > input {
+.input-field>input {
   margin-top: 20px;
   padding: 10px 20px 10px 8px;
   outline: none;
-  border: 2px solid #A61420;
+  border: 2px solid var(--grungy-red);
   border-radius: 15px;
   display: inline-block;
 }
 
-.input-field > input:focus {
-  box-shadow: 1px 1px 25px #A61420;
+.input-field>input:focus {
+  box-shadow: 1px 1px 25px var(--grungy-red);
 }
 
-.input-field > label {
+.input-field>label {
   position: absolute;
   top: 0.5px;
   left: 5px;
@@ -146,9 +184,9 @@ body {
 
 .btn {
   padding: 15px;
-  background-color: #ffb3d7;
+  background-color: var(--cherry-blossom-pink);
   color: white;
-  border: 2px solid #A61420;
+  border: 2px solid var(--grungy-red);
   border-radius: 10px;
   margin-top: 35px;
   font-family: 'Delius', Arial, Helvetica, sans-serif;
@@ -158,5 +196,21 @@ body {
 }
 
 .btn:hover {
-  background-color: #eca2c4;
+  background-color: var(--cherry-blossom-pink-dark);
+}
+
+.menu {
+  right: 40px;
+}
+
+@media screen and (min-width: 970px) {
+  .menu {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 970px) {
+  .auth-btn, .post-btn {
+    display: none;
+  }
 }

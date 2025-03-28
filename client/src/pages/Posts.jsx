@@ -1,13 +1,7 @@
 import { useState, useEffect } from "react"
-const Post = ({ post: propPost }) => {
-    const truncateText = (text, wordLimit) => {
-        const words = text.split(" ");
-        return words.length > wordLimit
-            ? words.slice(0, wordLimit).join(" ") + "..."
-            : text;
-    };
-
-
+import HomeLink from "../components/HomeLink"
+import ToggleButton from "../components/Buttons/ToggleButton"
+const Posts = () => {
     const [posts, setPost] = useState([])
 
     useEffect(() => {
@@ -18,10 +12,15 @@ const Post = ({ post: propPost }) => {
 
     return (
         <>
-            {posts.slice(0, 3).map((post) => (
+            <div className="navbar">
+                <HomeLink />
+                <ToggleButton />
+            </div>
+            <div className="posts">
+            {posts.map((post) => (
                 <div className='post' key={post.id}>
                     <div className='post-content'>
-                        <p>{truncateText(post.text, 70)}</p>
+                        <p>{post.text}</p>
                     </div>
                     <div className='post-info'>
                         <div className='user'>
@@ -33,8 +32,9 @@ const Post = ({ post: propPost }) => {
                     </div>
                 </div>
             ))}
+            </div>
         </>
     )
 }
 
-export default Post;
+export default Posts

@@ -6,6 +6,8 @@ import LoginPage from './pages/LoginPage'
 
 import './App.css'
 import axios from "axios"
+import CreatePost from './pages/CreatePost'
+import Posts from './pages/Posts'
 
 function App() {
   const [array, setArray] = useState([])
@@ -27,6 +29,8 @@ function App() {
         <Route path='/home' element={<Home />} />
         <Route path='/signup' element={<SignupPage />} />
         <Route path='/login' element={<LoginPage />} />
+        <Route path='/posts' element={<Posts />} />
+        <Route path='/create-post' element={<CreatePost />} />
       </Routes>
     </Router>
   )

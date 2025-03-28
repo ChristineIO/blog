@@ -1,0 +1,63 @@
+:root[data-theme="light"] {
+    --light-coral: #F7818Fff;
+    --cherry-blossom-pink: rgb(253, 186, 197);
+    --cherry-blossom-pink-dark: rgb(218, 100, 119);
+    --pink-lavender: #E9C1E9ff;
+    --fire-engine-red: #C60F1Bff;
+    --indian-red: #E84D5Aff;
+    --grungy-red: #a61453;
+    --blue-text: #F6FFFD;
+    --background: #ffffff;
+    --text-color: #500000;
+}
+
+:root[data-theme="dark"] {
+    --light-coral: #8B3A44;
+    --cherry-blossom-pink: rgb(122, 50, 65);
+    --cherry-blossom-pink-dark: rgb(100, 35, 49);
+    --pink-lavender: #61385B;
+    --fire-engine-red: #de3f4a;
+    --indian-red: #9E2B38;
+    --grungy-red: #5E0F2A;
+    --blue-text: #edffff;
+    --background: #120000;
+    --text-color: #f5e5e5;
+}
+
+#dropdown-list {
+    display: grid;
+    justify-content: flex-end;
+    align-items: end;
+    font-family: 'Delius', Arial, Helvetica, sans-serif;
+    margin: 5px 85px;
+    text-align: center;
+    display: none;
+}
+
+.dropdown-item {
+    display: block;
+    text-decoration: none;
+    padding: 20px;
+    font-size: smaller;
+    font-weight: 600;
+    border: 2px solid var(--grungy-red);
+    width: 125%;
+    color: var(--text-color);
+}
+
+.dropdown-item:hover {
+    background-color: #6138455d;
+    font-size: medium;
+}
+
+.dropdown-item:active {
+    color: var(--blue-text);
+}
+
+.dropdown-item:first-child {
+    border-radius: 20px 20px 0 0;
+}
+
+.dropdown-item:last-child {
+    border-radius: 0 0 10px 10px;
+}
