@@ -1,12 +1,28 @@
-const express = require("express")
-const cors = require("cors")
+import 'dotenv/config'
+import express from 'express'
+import cors from 'cors'
+import mongoose from "mongoose"
+import bcrypt from 'bcrypt'
 const app = express()
+console.log(process.env)
 const port = 5000
+const mongoUrl = process.env.mongo_url
 const corsOptions = {
     origin: ["http://localhost:5173"],
 }
 
+mongoose.connect(mongoUrl || "mongodb://localhost:27017/blogsphere_db").then(() => {
+    console.log('database connected')
+})
 app.use(cors(corsOptions))
+app.use(express.json())
+
+const userSchema = new mongoose.Schema({
+    username: String,
+    email: String,
+})
+
+const UserModel = mongoose.model('users', userSchema)
 
 let posts = [
     {
@@ -36,9 +52,9 @@ let posts = [
     
 ]
 
+
 app.get('/', (req, res)=> {
-    res.json({ animals: ["cats", "dogs", "birds"] })
-    res.send("like")
+    res.json(posts)
 })
 
 app.get('/api/posts', (req, res) => {
@@ -58,6 +74,11 @@ app.post('/api/posts', (req, res) => {
     posts.push(newPost);
     res.status(201).json(newPost);
 });
+
+app.get('/getUsers', async (req, res) => {
+    const userData = await UserModel.find();
+    res.json(userData);
+})
 
 if (port) {
     app.listen(port, () => {

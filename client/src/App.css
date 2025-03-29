@@ -136,12 +136,12 @@ body {
   text-align: left;
   flex-direction: column;
   font-family: 'Delius', Arial, Helvetica, sans-serif;
-  color: var(--grungy-red);
+  color: var(--text-color);
 }
 
 .auth-box-content {
   border-radius: 25px;
-  border: 2px solid var(--grungy-red);
+  border: 2px solid var(--cherry-blossom-pink-dark);
   padding: 10px 60px 55px 60px;
   box-shadow: 2px 4px 25px var(--fire-engine-red);
 }

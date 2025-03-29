@@ -34,6 +34,12 @@
     display: none;
 }
 
+@media screen and (min-width: 970px) {
+    .dropdown {
+        display: none;
+    }
+}
+
 .dropdown-item {
     display: block;
     text-decoration: none;
