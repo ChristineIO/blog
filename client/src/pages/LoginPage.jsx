@@ -6,12 +6,12 @@ const LoginPage = () => {
     return (
         <>
             <div className="auth-box">
-            <div className="auth-box-content">
+            <form className="auth-box-content" action='/login' method="POST">
                 <h1>Login</h1>
-                <InputField label="Email" type="email" name="email" />
+                <InputField label="Email" type="email" name="email"/>
                 <InputFieldPassword label="Password" type="password" name="password" />
                 <Button type="submit" text="Login" className="btn"/>
-            </div>
+            </form>
         </div>
         </>
     )

@@ -10,30 +10,32 @@ import CreatePost from './pages/CreatePost'
 import Posts from './pages/Posts'
 
 function App() {
-  const [array, setArray] = useState([])
-
-  const fetchData = async () => {
-    const response = await axios.get("http://localhost:5000")
-    setArray(response.data.animals)
-    console.log(response.data.animals)
-  }
+  const [data, setData] = useState([])
 
   useEffect(() => {
-    fetchData()
+    async function fetchData() {
+      const response = await axios.get('http://localhost:5000/posts/67eae9a209be5e23d8031e1b')
+      if (response.status === 200) {
+        setData(response.data)
+      } else {
+        console.error('Error fetching data:', response.statusText)
+      }
+      
+} fetchData()
   }, [])
 
   return (
-    <Router>
-      <Routes>
-        <Route index element={<Home />} />
-        <Route path='/home' element={<Home />} />
-        <Route path='/signup' element={<SignupPage />} />
-        <Route path='/login' element={<LoginPage />} />
-        <Route path='/posts' element={<Posts />} />
-        <Route path='/create-post' element={<CreatePost />} />
-      </Routes>
-    </Router>
-  )
+  <Router>
+    <Routes>
+      <Route index element={JSON.stringify(data)} />
+      <Route path='/home' element={<Home />} />
+      <Route path='/signup' element={<SignupPage />} />
+      <Route path='/login' element={<LoginPage />} />
+      <Route path='/posts' element={<Posts />} />
+      <Route path='/create-post' element={<CreatePost />} />
+    </Routes>
+  </Router>
+)
 }
 
 export default App

@@ -11,7 +11,7 @@ const InputFieldPassword = ({ label, name, type }) => {
         <>
             <div className="input-field">
                 <label htmlFor={name}>{label}</label>
-                <input name={name} type={type} />
+                <input name={name} type={type} required/>
                 <button type='button' className='inline-icon'
                     onClick={() => setIsVisible(!isVisible)}>
                     {isVisible ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}</button>

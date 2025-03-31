@@ -1,28 +1,29 @@
-import 'dotenv/config'
-import express from 'express'
-import cors from 'cors'
-import mongoose from "mongoose"
-import bcrypt from 'bcrypt'
+// import { createRequire } from 'module'
+// const require = createRequire(import.meta.url);
+const express = require('express')
+const cors = require('cors')
+const mongoose = require('mongoose')
+require('dotenv').config({ path: './config.env' })
+const { connect, connectToServer } = require('./connect.js')
+const postRoutes = require('./postRoutes.js')
+
 const app = express()
 console.log(process.env)
 const port = 5000
-const mongoUrl = process.env.mongo_url
+const mongoUrl = process.env.MONGO_URL
 const corsOptions = {
     origin: ["http://localhost:5173"],
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true
 }
 
-mongoose.connect(mongoUrl || "mongodb://localhost:27017/blogsphere_db").then(() => {
+mongoose.connect("mongodb://localhost:27017/blogsphere_db").then(() => {
     console.log('database connected')
 })
+
 app.use(cors(corsOptions))
 app.use(express.json())
-
-const userSchema = new mongoose.Schema({
-    username: String,
-    email: String,
-})
-
-const UserModel = mongoose.model('users', userSchema)
+app.use(postRoutes);
 
 let posts = [
     {
@@ -49,11 +50,10 @@ let posts = [
         user: "jennieruby02",
         date: 'new Date.toISOString()',
     }
-    
+
 ]
 
-
-app.get('/', (req, res)=> {
+app.get('/', (req, res) => {
     res.json(posts)
 })
 
@@ -73,19 +73,16 @@ app.post('/api/posts', (req, res) => {
     };
     posts.push(newPost);
     res.status(201).json(newPost);
-});
-
-app.get('/getUsers', async (req, res) => {
-    const userData = await UserModel.find();
-    res.json(userData);
 })
 
 if (port) {
     app.listen(port, () => {
+        connectToServer()
         console.log(`Server started on port ${port}, I love this <3`)
     })
 } else {
     app.listen(8000, () => {
+        connectToServer()
         console.log(`I love this <3`)
     })
 }

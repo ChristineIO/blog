@@ -3,7 +3,7 @@ const InputField = ({ label, name, type }) => {
         <>
             <div className="input-field">
                 <label htmlFor={name}>{label}</label>
-                <input name={name} type={type} />
+                <input name={name} type={type} required/>
             </div>
         </>
     )

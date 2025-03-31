@@ -96,6 +96,12 @@ body {
   padding: 10px;
 }
 
+.post > a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-family: 'Sour Gummy', Arial, Helvetica, sans-serif;
+}
+
 .post {
   display: grid;
   flex-direction: column;
@@ -133,7 +139,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: left;
+  text-align: center;
   flex-direction: column;
   font-family: 'Delius', Arial, Helvetica, sans-serif;
   color: var(--text-color);
@@ -214,3 +220,17 @@ body {
     display: none;
   }
 }
+
+.oauth-btn {
+  padding: 10px !important;
+  display: flex;
+  border-radius: 25px;
+  margin-top: 30px;
+  background-color: var(--blue-text);
+  border-color: var(--cherry-blossom-pink-dark) !important;
+  vertical-align: middle;
+  align-items: middle;
+  gap: 8px;
+  color: var(--text-color);
+}
+

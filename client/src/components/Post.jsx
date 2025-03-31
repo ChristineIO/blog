@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
+
 const Post = ({ post: propPost }) => {
     const truncateText = (text, wordLimit) => {
         const words = text.split(" ");
@@ -20,17 +22,19 @@ const Post = ({ post: propPost }) => {
         <>
             {posts.slice(0, 3).map((post) => (
                 <div className='post' key={post.id}>
-                    <div className='post-content'>
-                        <p>{truncateText(post.text, 70)}</p>
-                    </div>
-                    <div className='post-info'>
-                        <div className='user'>
-                            <p>{post.user}</p>
+                    <Link to={`/posts/${post._id}`}>
+                        <div className='post-content'>
+                            <p>{truncateText(post.text, 70)}</p>
                         </div>
-                        <div className='date'>
-                            <p>{new Date(post.date).toLocaleDateString()}</p>
+                        <div className='post-info'>
+                            <div className='user'>
+                                <p>{post.user}</p>
+                            </div>
+                            <div className='date'>
+                                <p>{new Date(post.date).toLocaleDateString()}</p>
+                            </div>
                         </div>
-                    </div>
+                    </Link>
                 </div>
             ))}
         </>
