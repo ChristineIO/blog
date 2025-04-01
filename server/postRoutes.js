@@ -56,5 +56,4 @@ postRoutes.route('/posts/:id').delete(async (req, res) => {
     let data = await db.collection('posts').deleteOne({ _id: new ObjectId(req.params.id) })
     res.json(data)
 })
-
 module.exports = postRoutes;

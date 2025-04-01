@@ -4,15 +4,16 @@ import ToggleButton from "../components/Buttons/ToggleButton"
 import HomeLink from "../components/HomeLink"
 import './styles/CreatePost.css'
 import { useEffect } from "react"
+import { createPost } from '../api.js'
 
 const CreatePost = () => {
-    const createPost = () => {
+    const createNewPost = () => {
         let postUser = {
             text: document.querySelector('.post-text').value,
-            user: 'testuser',
+            user: 'rosey22',
             date: new Date().toISOString().split('T')[0],
         }
-       axios.post('http://localhost:5000/create-post', postUser)
+        createPost(postUser)
     }
 
     return (
@@ -23,7 +24,7 @@ const CreatePost = () => {
             </div>
             <form className="post-form">
                 <textarea className="post-text" name="text"></textarea>
-                <Button type='submit' text='Post' className='btn' onClick={createPost}/>
+                <Button type='submit' text='Post' className='btn' onClick={createNewPost} />
             </form>
         </>
     )

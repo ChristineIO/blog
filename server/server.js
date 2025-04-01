@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 require('dotenv').config({ path: './config.env' })
 const { connect, connectToServer } = require('./connect.js')
 const postRoutes = require('./postRoutes.js')
+const users = require('./userRoutes.js')
 
 const app = express()
 console.log(process.env)
@@ -17,13 +18,14 @@ const corsOptions = {
     credentials: true
 }
 
-mongoose.connect("mongodb://localhost:27017/blogsphere_db").then(() => {
+mongoose.connect(mongoUrl).then(() => {
     console.log('database connected')
 })
 
 app.use(cors(corsOptions))
 app.use(express.json())
 app.use(postRoutes);
+app.use(users);
 
 let posts = [
     {

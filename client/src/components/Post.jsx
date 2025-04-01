@@ -13,7 +13,7 @@ const Post = ({ post: propPost }) => {
     const [posts, setPost] = useState([])
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/posts")
+        fetch("http://localhost:5000/posts")
             .then((res) => res.json())
             .then((data) => setPost(data))
     }, [])
