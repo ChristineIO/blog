@@ -24,6 +24,7 @@ export async function getPost(id) {
 
 export async function createPost(post) {
     const response = await axios.post(`${URL}/create-post`, post)
+    console.log(response)
     return response
 }
 

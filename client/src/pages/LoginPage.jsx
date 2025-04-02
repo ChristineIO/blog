@@ -1,3 +1,4 @@
+import axios from "axios"
 import { verifyUser } from "../api"
 import Button from "../components/Button"
 import InputField from "../components/InputField"
@@ -19,8 +20,9 @@ const LoginPage = () => {
         if (!response) {
             setError(true)
         } else if (response) {
-            navigate('/home')
             sessionStorage.setItem("User", response)
+            axios.defaults.headers.common['Authorization'] = `Bearer ${response}`
+            navigate('/home')
         }
     }
 

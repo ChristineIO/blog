@@ -4,16 +4,20 @@ import ToggleButton from "../components/Buttons/ToggleButton"
 import HomeLink from "../components/HomeLink"
 import './styles/CreatePost.css'
 import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import { createPost } from '../api.js'
 
 const CreatePost = () => {
-    const createNewPost = () => {
+    let navigate = useNavigate()
+    const createNewPost = async (e) => {
+        e.preventDefault()
         let postUser = {
             text: document.querySelector('.post-text').value,
             user: 'rosey22',
             date: new Date().toISOString().split('T')[0],
         }
-        createPost(postUser)
+        await createPost(postUser)
+        navigate("/posts")
     }
 
     return (

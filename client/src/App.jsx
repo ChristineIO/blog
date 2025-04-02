@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, createCookieSessionStorage } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Home from './pages/Home'
 import SignupPage from './pages/Signup'
@@ -15,17 +15,14 @@ import ProfilePage from './pages/styles/ProfilePage'
 
 function App() {
   const [posts, setPosts] = useState([])
-  
+
 
   useEffect(() => {
-    async function loadAllPosts() {
-      let data = await getPost('67eab6ef9b3a443f947afb5a')
-      if (data) {
-        setPosts(data)
-      } else {
-        console.error('Data not available!')
-      }
-    } loadAllPosts()
+    let token = sessionStorage.getItem("User")
+    if (token) {
+
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+    }
   }, [])
 
   return (

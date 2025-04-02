@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom"
 import { getPost } from "../api";
 import HomeLink from "../components/HomeLink"
-import ToggleButton from "../components/Buttons/ToggleButton";
+import ToggleButton from "../components/Buttons/ToggleButton"
 
 const OnePost = () => {
     const [post, setPost] = useState({})

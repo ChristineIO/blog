@@ -5,7 +5,6 @@ const database = require('./connect.js');
 const ObjectId = require('mongodb').ObjectId;
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const secretKey = process.env.SECRET_KEY
 
 let userRoutes = express.Router();
 const SALT_ROUNDS = 6
