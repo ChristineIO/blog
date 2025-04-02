@@ -20,6 +20,7 @@ const LoginPage = () => {
             setError(true)
         } else if (response) {
             navigate('/home')
+            sessionStorage.setItem("User", response)
         }
     }
 
