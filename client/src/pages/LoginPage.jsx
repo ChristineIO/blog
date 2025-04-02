@@ -6,6 +6,7 @@ import { useState } from "react"
 import { useNavigate } from 'react-router-dom'
 
 const LoginPage = () => {
+    const [error, setError] = useState(false)
     const navigate = useNavigate()
     const [user, setUser] = useState({
         email: "",
@@ -14,11 +15,11 @@ const LoginPage = () => {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        let response = await verifyUser(e)
-        navigate('/home')
-
-        if (response.status !== 200) {
-            alert("Account could not be created!")
+        let response = await verifyUser(user)
+        if (!response) {
+            setError(true)
+        } else if (response) {
+            navigate('/home')
         }
     }
 
@@ -28,11 +29,14 @@ const LoginPage = () => {
 
     return (
         <>
+            {error ? <div className="error-box">
+                <h1>Account not found </h1>
+            </div> : <></>}
             <div className="auth-box">
                 <form className="auth-box-content" onSubmit={handleSubmit}>
                     <h1>Login</h1>
-                    <InputField label="Email" type="email" name="email" />
-                    <InputFieldPassword label="Password" type="password" name="password" />
+                    <InputField label="Email" type="email" name="email" maxLength={40} onChange={handleChange} />
+                    <InputFieldPassword label="Password" type="password" name="password" maxLength={40} onChange={handleChange} />
                     <Button type="submit" text="Login" className="btn" />
                 </form>
             </div>

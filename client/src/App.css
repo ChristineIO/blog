@@ -135,9 +135,9 @@ body {
 }
 
 .auth-box {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
+  height: 75vh;
+  display: grid;
+  justify-items: center;
   align-items: center;
   text-align: center;
   flex-direction: column;
@@ -234,3 +234,29 @@ body {
   color: var(--text-color);
 }
 
+.error-box {
+  background-color: var(--fire-engine-red);
+  color: white;
+  text-align: center;
+  justify-self: center;
+  width: 35%;
+  padding: 1px 2px 1px 2px;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  border-radius: 15px;
+  font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
+  font-size: x-small;
+}
+
+.profile-content {
+  max-width: 1280px;
+  margin: auto;
+  padding: 25px;
+  font-family: 'Delius', Arial, Helvetica, sans-serif;
+}
+
+.profile-content > h1 {
+  color: var(--text-color);
+  font-weight: 900;
+}

@@ -9,6 +9,7 @@ import { createUser } from "../api"
 import { useState } from "react"
 
 const SignupPage = () => {
+    const [error, setError] = useState(false)
     const navigate = useNavigate()
     const handleLogout = () => {
         googleLogout()
@@ -23,27 +24,30 @@ const SignupPage = () => {
     async function handleSubmit(e) {
         e.preventDefault()
         let response = await createUser(user)
-        navigate('/home')
-        
-        if (response.status !== 200) {
-            alert("Account could not be created!")
+        if (!response.data.error) {
+            navigate('/home')
+        } else if (response.data.error) {
+            setError(true)
         }
     }
 
     function handleChange(e) {
-        setUser({ ... user, [e.target.name]: e.target.value })
+        setUser({ ...user, [e.target.name]: e.target.value })
     }
 
     return (
         <>
+            {error ? <div className="error-box">
+                <h1>Account not created. Try new email </h1>
+            </div> : <></>}
             <div className="auth-box">
                 <form className="auth-box-content" onSubmit={handleSubmit}>
                     <h1>Sign Up</h1>
                     <InputField name='username' type='text' label='Username'
-                    onChange={handleChange} maxLength={16}/>
+                        onChange={handleChange} maxLength={16} />
                     <InputField name='email' type='email' label='Email' onChange={handleChange}
-                    maxLength={55}/>
-                    <InputFieldPassword name='password' type='password' label='Password' onChange={handleChange} maxLength={20}/>
+                        maxLength={90} />
+                    <InputFieldPassword name='password' type='password' label='Password' onChange={handleChange} maxLength={40} />
                     <Button type='submit' text='Register' className='btn' style={{ marginBottom: '25px' }} />
                     <GoogleLogin onSuccess={(credentialResponse) => {
                         console.log(credentialResponse)
@@ -51,7 +55,7 @@ const SignupPage = () => {
                         navigate('/home')
                     }} onError={() => {
                         console.log('error')
-                    }} auto_select={true} shape="pill" logo_alignment="left" theme="outline"/>
+                    }} auto_select={true} shape="pill" logo_alignment="left" theme="outline" />
                 </form>
             </div>
         </>

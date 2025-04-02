@@ -11,9 +11,11 @@ import CreatePost from './pages/CreatePost'
 import Posts from './pages/Posts'
 import Post from './components/Post'
 import OnePost from './pages/OnePost'
+import ProfilePage from './pages/styles/ProfilePage'
 
 function App() {
   const [posts, setPosts] = useState([])
+  
 
   useEffect(() => {
     async function loadAllPosts() {
@@ -33,6 +35,7 @@ function App() {
         <Route path='/home' element={<Home />} />
         <Route path='/signup' element={<SignupPage />} />
         <Route path='/login' element={<LoginPage />} />
+        <Route path='/profile' element={<ProfilePage />} />
         <Route path='/posts' element={<Posts />} />
         <Route path='/create-post' element={<CreatePost />} />
         <Route path='/posts/:id' element={<OnePost />} />

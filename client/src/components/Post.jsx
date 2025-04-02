@@ -21,7 +21,7 @@ const Post = ({ post: propPost }) => {
     return (
         <>
             {posts.slice(0, 3).map((post) => (
-                <div className='post' key={post.id}>
+                <div className='post' key={post._id}>
                     <Link to={`/posts/${post._id}`}>
                         <div className='post-content'>
                             <p>{truncateText(post.text, 70)}</p>
