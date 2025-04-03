@@ -59,16 +59,17 @@ postRoutes.route('/posts/:id').delete(verifyToken, async (req, res) => {
 })
 
 function verifyToken(req, res, next) {
-    const authHeaders = req.headers['authorization']
-    const token = authHeaders && authHeaders.split(' ')[1]
+    const token = req.cookies.authToken
+
     if (!token) {
-        return res.status(401).json({message: "Authentication token missing"})
+        return res.status(401).json({ success: false, message: "Authentication token missing" })
     }
-    jwt.verify(token, process.env.SECRET_KEY, (error, user) => {
+    jwt.verify(token, process.env.SECRET_KEY, (error, decoded) => {
         if (error) {
-            return res.status(403).json({message: "Invalid token"})
+            res.clearCookie('authToken', { path: '/' })
+            return res.status(403).json({ success: false, message: "Invalid session" });
         }
-        req.body.user = user
+        req.body.user = decoded
         next()
     })
 }

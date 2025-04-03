@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import HomeLink from "../components/HomeLink"
 import ToggleButton from "../components/Buttons/ToggleButton"
 import { Link } from "react-router-dom"
+import LogoutButton from "../components/Buttons/LogoutButton"
 const Posts = () => {
     const truncateText = (text, wordLimit) => {
         const words = text.split(" ");
@@ -23,6 +24,7 @@ const Posts = () => {
             <div className="navbar">
                 <HomeLink />
                 <ToggleButton />
+                <LogoutButton />
             </div>
             <div className="posts">
                 {posts.map((post) => (

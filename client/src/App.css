@@ -65,6 +65,7 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
   margin: 8px;
   text-decoration: none;
+  border: transparent;
 }
 
 .auth-btn:hover {

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import Dropdown from '../components/Dropdown/Dropdown'
 import HomeLink from '../components/HomeLink';
+import LogoutButton from '../components/Buttons/LogoutButton';
 
 
 const Home = () => {
@@ -35,6 +36,7 @@ const Home = () => {
                     <ToggleButton />
                     <Link to='/signup' className='auth-btn'>Sign up</Link>
                     <Link to='/login' className='auth-btn'>Login</Link>
+                    <LogoutButton />
                     <button className='toggle-theme menu' onClick={menuVisible}><FontAwesomeIcon icon={faBars} style={{color: '#A61723'}}/></button>
                 </div>
             </div>

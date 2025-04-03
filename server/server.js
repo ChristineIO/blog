@@ -2,6 +2,7 @@
 // const require = createRequire(import.meta.url);
 const express = require('express')
 const cors = require('cors')
+const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose')
 require('dotenv').config({ path: './config.env' })
 const { connect, connectToServer } = require('./connect.js')
@@ -24,6 +25,7 @@ mongoose.connect(mongoUrl).then(() => {
 
 app.use(cors(corsOptions))
 app.use(express.json())
+app.use(cookieParser())
 app.use(postRoutes);
 app.use(users);
 

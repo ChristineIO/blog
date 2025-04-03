@@ -1,5 +1,5 @@
 import axios from "axios";
-
+axios.defaults.withCredentials = true
 const URL = "http://localhost:5000"
 
 // posts
@@ -24,8 +24,8 @@ export async function getPost(id) {
 
 export async function createPost(post) {
     const response = await axios.post(`${URL}/create-post`, post)
-    console.log(response)
     return response
+
 }
 
 export async function updatePost(id, post) {
@@ -69,9 +69,32 @@ export async function updateUser(id, user) {
 }
 export async function verifyUser(user) {
     const response = await axios.post(`${URL}/users/login`, user)
-    if(response.data.success) {
+    if (response.data.success) {
         return response.data.token
     } else {
         return
+    }
+}
+export async function checkAuth() {
+    const response = await axios.get(`${URL}/users/check-auth`, {withCredentials: true})
+    return response
+}
+export async function logoutUser() {
+    try {
+        const response = await axios.post(
+            `${URL}/users/logout`,
+            {}, // Don't send anything
+            {
+                // needed for cookie-based auth to check for stuff
+                withCredentials: true
+            }
+        );
+
+        // should reload page
+        window.location.reload();
+        return true;
+    } catch (error) {
+        console.error('Logout failed:', error);
+        return false;
     }
 }

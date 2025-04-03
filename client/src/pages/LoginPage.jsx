@@ -20,8 +20,8 @@ const LoginPage = () => {
         if (!response) {
             setError(true)
         } else if (response) {
-            sessionStorage.setItem("User", response)
-            axios.defaults.headers.common['Authorization'] = `Bearer ${response}`
+            // sessionStorage.setItem("User", response)
+            // axios.defaults.headers.common['Authorization'] = `Bearer ${response}`
             navigate('/home')
         }
     }
