@@ -116,7 +116,7 @@ userRoutes.route('/users/logout').post(async (req, res) => {
 })
 
 userRoutes.route('/users/check-auth').get(async (req, res) => {
-    const token = req.cookies.authToken;
+    const token = req.cookies['authToken'];
   
   if (!token) {
     return res.status(401).json({ success: false });

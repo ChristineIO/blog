@@ -19,9 +19,8 @@ const CreatePost = () => {
             user: 'rosey22',
             date: new Date().toISOString().split('T')[0],
         }
-        await createPost(postUser)
-        let userAuth = checkAuth()
-        if (!userAuth) {
+        let createPostAction = await createPost(postUser)
+        if (!createPostAction) {
             setError(true)
         } else {
             navigate('/posts')

@@ -22,7 +22,6 @@ const Home = () => {
 
     return (
         <div>
-            
             <div className='navbar'>
                 <div className='logo'>
                     <HomeLink />

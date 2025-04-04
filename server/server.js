@@ -23,9 +23,9 @@ mongoose.connect(mongoUrl).then(() => {
     console.log('database connected')
 })
 
+app.use(cookieParser())
 app.use(cors(corsOptions))
 app.use(express.json())
-app.use(cookieParser())
 app.use(postRoutes);
 app.use(users);
 
