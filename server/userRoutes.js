@@ -5,7 +5,6 @@ const database = require('./connect.js');
 const ObjectId = require('mongodb').ObjectId;
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
-const { use } = require('passport');
 
 let userRoutes = express.Router();
 const SALT_ROUNDS = 6
@@ -23,12 +22,26 @@ userRoutes.route('/users').get(async (req, res) => {
 })
 
 userRoutes.route('/users/:id').get(async (req, res) => {
-    let db = database.getDb();
-    let data = await db.collection('users').findOne({ _id: new ObjectId(req.params.id) })
-    if (Object.keys(data.length > 0)) {
-        res.json(data)
-    } else {
-        throw new Error('data not found')
+    const db = database.getDb();
+    const { id } = req.params;
+
+    // ✅ Validate ObjectId first
+    if (!ObjectId.isValid(id)) {
+        return res.status(400).json({ error: 'Invalid user ID format' });
+    }
+
+    try {
+        const data = await db.collection('users').findOne({ _id: new ObjectId(id) });
+
+        // ✅ Properly check if data exists
+        if (data) {
+            res.json(data);
+        } else {
+            res.status(404).json({ error: 'User not found' });
+        }
+    } catch (error) {
+        console.error('Error fetching user:', error);
+        res.status(500).json({ error: 'Server error' });
     }
 })
 
@@ -116,19 +129,14 @@ userRoutes.route('/users/logout').post(async (req, res) => {
 })
 
 userRoutes.route('/users/check-auth').get(async (req, res) => {
-    const token = req.cookies['authToken'];
-  
-  if (!token) {
-    return res.status(401).json({ success: false });
-  }
+    const token = req.cookies.authToken;
 
-  // Simple JWT check (no try-catch)
-  jwt.verify(token, process.env.SECRET_KEY, (error, decoded) => {
-    if (error) {
-      return res.status(200).json({ success: false });
+    if (token) {
+        return res.sendStatus(200);
+    } else {
+        return res.sendStatus(201);
     }
-    res.json({ success: true });
-  });
+
 })
 
 module.exports = userRoutes;

@@ -27,7 +27,7 @@ app.use(cookieParser())
 app.use(cors(corsOptions))
 app.use(express.json())
 app.use(postRoutes);
-app.use(users);
+app.use('/', users);
 
 let posts = [
     {

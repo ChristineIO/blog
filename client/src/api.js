@@ -76,8 +76,16 @@ export async function verifyUser(user) {
     }
 }
 export async function checkAuth() {
-    const response = await axios.get(`${URL}/users/check-auth`, {withCredentials: true})
-    return response
+    try {
+        const response = await fetch(`${URL}/users/check-auth`, {
+            credentials: 'include'
+        });
+
+        return response
+    } catch (error) {
+        console.error(`the error: ${error.message}`);
+        return null;
+    }
 }
 export async function logoutUser() {
     try {

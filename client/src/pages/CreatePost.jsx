@@ -10,6 +10,7 @@ import LogoutButton from "../components/Buttons/LogoutButton.jsx"
 import Cookies from 'js-cookie'
 
 const CreatePost = () => {
+
     const [error, setError] = useState(false)
     let navigate = useNavigate()
     const createNewPost = async (e) => {
@@ -19,10 +20,11 @@ const CreatePost = () => {
             user: 'rosey22',
             date: new Date().toISOString().split('T')[0],
         }
-        let createPostAction = await createPost(postUser)
-        if (!createPostAction) {
+        let userAuth = await checkAuth()
+        if (userAuth.ok) {
             setError(true)
         } else {
+            let createPostAction = await createPost(postUser)
             navigate('/posts')
         }
 
@@ -36,7 +38,7 @@ const CreatePost = () => {
                 <LogoutButton />
             </div>
             {error ? <div className="error-box">
-                <h1>Account not found </h1>
+                <h1>Login pls </h1>
             </div> : <></>}
             <form className="post-form">
                 <textarea className="post-text" name="text"></textarea>
