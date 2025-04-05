@@ -10,6 +10,8 @@ import LogoutButton from "../components/Buttons/LogoutButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUser } from "@fortawesome/free-regular-svg-icons"
 import './styles/ProfilePage.css'
+import MenuButton from "../components/Buttons/MenuButton"
+import Dropdown from "../components/Dropdown/Dropdown"
 
 const ProfilePage = () => {
     const [posts, setPosts] = useState([])
@@ -42,8 +44,10 @@ const ProfilePage = () => {
                 </div>
                 <PostButtons />
                 <ToggleButton />
+                <MenuButton />
                 {logout ? <LogoutButton /> : <></>}
             </div>
+            <Dropdown />
             <div className="profile">
                 <div className="profile-content">
                     <div className="profile-pic"><FontAwesomeIcon icon={faUser} /></div>

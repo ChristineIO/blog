@@ -9,6 +9,8 @@ import { checkAuth, createPost, verifyUser } from '../api.js'
 import LogoutButton from "../components/Buttons/LogoutButton.jsx"
 import Cookies from 'js-cookie'
 import authVerify from "../components/authVerify.js"
+import MenuButton from "../components/Buttons/MenuButton.jsx"
+import Dropdown from "../components/Dropdown/Dropdown.jsx"
 
 const CreatePost = () => {
     const [authBtn, setAuthBtn] = useState(true)
@@ -62,8 +64,10 @@ const CreatePost = () => {
                     }
 
                     {logout ? <LogoutButton /> : <></>}
+                    <MenuButton />
                 </div>
             </div>
+            <Dropdown />
             {error ? <div className="error-box">
                 <h1>Login pls </h1>
             </div> : <></>}

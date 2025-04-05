@@ -17,7 +17,7 @@ function App() {
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', 'light')
+    document.documentElement.setAttribute('data-theme', 'dark')
   }, [])
   return (
     <Router>

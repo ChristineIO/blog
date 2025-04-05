@@ -5,6 +5,8 @@ import { Link } from "react-router-dom"
 import LogoutButton from "../components/Buttons/LogoutButton"
 import truncateText from "../components/truncateText"
 import { checkAuth } from "../api"
+import MenuButton from "../components/Buttons/MenuButton"
+import Dropdown from "../components/Dropdown/Dropdown"
 const Posts = () => {
     const [posts, setPost] = useState([])
     const [authBtn, setAuthBtn] = useState(true)
@@ -45,8 +47,10 @@ const Posts = () => {
                     }
 
                     {logout ? <LogoutButton /> : <></>}
+                    <MenuButton />
                 </div>
             </div>
+            <Dropdown />
             <div className="posts">
                 {posts.map((post) => (
                     <div className='post' key={post._id}>

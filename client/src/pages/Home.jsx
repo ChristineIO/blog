@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
 import Post from '../components/Post'
 import ToggleButton from '../components/Buttons/ToggleButton'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
 import Dropdown from '../components/Dropdown/Dropdown'
 import HomeLink from '../components/HomeLink';
 import LogoutButton from '../components/Buttons/LogoutButton'
@@ -10,6 +8,7 @@ import { useEffect, useState } from 'react'
 import { getCookie } from 'react-use-cookie';
 import { checkAuth } from '../api';
 import PostButtons from '../components/PostButtons';
+import MenuButton from '../components/Buttons/MenuButton';
 
 const Home = () => {
     const [authBtn, setAuthBtn] = useState(true)
@@ -28,16 +27,6 @@ const Home = () => {
 
         fetchAuth();
     }, [])
-    let menuIsVisible = false;
-    let menuVisible = () => {
-        if (!menuIsVisible) {
-            document.getElementById('dropdown-list').style.display = 'grid'
-            menuIsVisible = true
-        } else if (menuIsVisible) {
-            document.getElementById('dropdown-list').style.display = 'none'
-            menuIsVisible = false
-        }
-    }
 
     return (
         <div>
@@ -60,7 +49,7 @@ const Home = () => {
                     }
 
                     {logout ? <LogoutButton /> : <></>}
-                    <button className='toggle-theme menu' onClick={menuVisible}><FontAwesomeIcon icon={faBars} style={{ color: '#A61723' }} /></button>
+                    <MenuButton />
                 </div>
             </div>
             <div>
