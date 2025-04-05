@@ -33,7 +33,7 @@ userRoutes.route('/users/check-auth').get(async (req, res) => {
             return res.status(200).json({ success: false }); 
         }
         // token def exists
-        return res.status(200).json({ success: true });
+        return res.status(200).json({ success: true, token });
         
     } catch (error) {
         console.error("Auth check error: ", error);

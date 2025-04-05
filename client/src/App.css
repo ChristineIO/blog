@@ -253,12 +253,13 @@ body {
 
 .profile-content {
   max-width: 1280px;
-  margin: auto;
   padding: 25px;
   font-family: 'Delius', Arial, Helvetica, sans-serif;
 }
 
 .profile-content > h1 {
   color: var(--text-color);
-  font-weight: 900;
+  font-size: 33px;
+  margin-left: 10%;
+  margin-bottom: -50px;
 }

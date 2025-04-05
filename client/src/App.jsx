@@ -11,7 +11,7 @@ import CreatePost from './pages/CreatePost'
 import Posts from './pages/Posts'
 import Post from './components/Post'
 import OnePost from './pages/OnePost'
-import ProfilePage from './pages/styles/ProfilePage'
+import ProfilePage from './pages/ProfilePage'
 
 function App() {
   const [posts, setPosts] = useState([])

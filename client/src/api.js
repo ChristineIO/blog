@@ -22,6 +22,11 @@ export async function getPost(id) {
     }
 }
 
+export async function getUserPost(user) {
+    const response = await axios.get(`${URL}/posts/userPosts/${user}`)
+    return response.data
+}
+
 export async function createPost(post) {
     const response = await axios.post(`${URL}/create-post`, post)
     return response

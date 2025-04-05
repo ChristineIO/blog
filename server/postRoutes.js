@@ -18,13 +18,36 @@ postRoutes.route('/posts').get(async (req, res) => {
     }
 })
 
-postRoutes.route('/posts/:id').get(async (req, res) => {
+postRoutes.route('/posts/userPosts/:user').get(async (req, res) => {
     let db = database.getDb();
-    let data = await db.collection('posts').findOne({ _id: new ObjectId(req.params.id) })
-    if (Object.keys(data.length > 0)) {
+    const query = {
+        user:
+            ObjectId.isValid(req.params.user)
+                ?
+                new ObjectId(req.params.user)
+                :
+                req.params.user
+    };
+    let data = await db.collection('posts').find(query).toArray()
+    if (data) {
         res.json(data)
     } else {
-        throw new Error('data not found')
+        console.error(data)
+    }
+})
+
+postRoutes.route('/posts/:id').get(async (req, res) => {
+    let db = database.getDb();
+    const query = {
+        _id: ObjectId.isValid(req.params.id)
+            ? new ObjectId(req.params.id)
+            : req.params.id
+    };
+    let data = await db.collection('posts').findOne(query)
+    if (data) {
+        res.json(data)
+    } else {
+        console.log('unacceptable data is ' + data)
     }
 })
 
