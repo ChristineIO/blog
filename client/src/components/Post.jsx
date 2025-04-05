@@ -1,15 +1,8 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import truncateText from "./truncateText"
 
 const Post = ({ post: propPost }) => {
-    const truncateText = (text, wordLimit) => {
-        const words = text.split(" ");
-        return words.length > wordLimit
-            ? words.slice(0, wordLimit).join(" ") + "..."
-            : text;
-    };
-
-
     const [posts, setPost] = useState([])
 
     useEffect(() => {

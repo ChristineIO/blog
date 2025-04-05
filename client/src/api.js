@@ -104,8 +104,6 @@ export async function logoutUser() {
             }
         );
 
-        // should reload current page
-        window.location.reload();
         return true;
     } catch (error) {
         console.error('Logout failed:', error);

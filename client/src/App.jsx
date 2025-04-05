@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import Home from './pages/Home'
 import SignupPage from './pages/Signup'
 import LoginPage from './pages/LoginPage'
-import {getCookie} from 'react-use-cookie'
+import { getCookie } from 'react-use-cookie'
 
 import './App.css'
 import axios from "axios"
@@ -16,15 +16,9 @@ import ProfilePage from './pages/ProfilePage'
 function App() {
   const [posts, setPosts] = useState([])
 
-
-//   useEffect(() => {
-//     let token = sessionStorage.getItem("User")
-//     if (token) {
-// 
-//       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-//     }
-//   }, [])
-
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', 'light')
+  }, [])
   return (
     <Router>
       <Routes>

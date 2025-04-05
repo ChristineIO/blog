@@ -14,5 +14,3 @@ createRoot(document.getElementById('root')).render(
     </StrictMode>
   </GoogleOAuthProvider>
 )
-
-document.documentElement.setAttribute('data-theme', 'light')

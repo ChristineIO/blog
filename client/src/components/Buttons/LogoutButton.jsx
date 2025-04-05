@@ -1,12 +1,12 @@
 import { logoutUser } from "../../api"
-import { redirect, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 const LogoutButton = ({classMarkup = 'auth-btn'}) => {
 
     let navigate = useNavigate()
     const handleLogout = async () => {
         await logoutUser()
-        redirect('/')
+        navigate('/')
     }
 
     return (

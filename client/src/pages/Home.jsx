@@ -11,8 +11,6 @@ import { getCookie } from 'react-use-cookie';
 import { checkAuth } from '../api';
 import PostButtons from '../components/PostButtons';
 
-
-
 const Home = () => {
     const [authBtn, setAuthBtn] = useState(true)
     const [logout, setLogout] = useState(false)
