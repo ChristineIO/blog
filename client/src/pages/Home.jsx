@@ -5,10 +5,30 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import Dropdown from '../components/Dropdown/Dropdown'
 import HomeLink from '../components/HomeLink';
-import LogoutButton from '../components/Buttons/LogoutButton';
+import LogoutButton from '../components/Buttons/LogoutButton'
+import { useEffect, useState } from 'react'
+import { getCookie } from 'react-use-cookie';
+import { checkAuth } from '../api';
+
 
 
 const Home = () => {
+    const [authBtn, setAuthBtn] = useState(true)
+    const [logout, setLogout] = useState(false)
+    useEffect(() => {
+        const fetchAuth = async () => {
+            let userAuth = await checkAuth()
+            if (userAuth.data.success) {
+                setAuthBtn(false);
+                setLogout(true);
+            } else if (!userAuth.data.success){
+                setLogout(false);
+                setAuthBtn(true);
+            }
+        };
+
+        fetchAuth();
+    }, [])
     let menuIsVisible = false;
     let menuVisible = () => {
         if (!menuIsVisible) {
@@ -33,10 +53,17 @@ const Home = () => {
 
                 <div className='auth-buttons'>
                     <ToggleButton />
-                    <Link to='/signup' className='auth-btn'>Sign up</Link>
-                    <Link to='/login' className='auth-btn'>Login</Link>
-                    <LogoutButton />
-                    <button className='toggle-theme menu' onClick={menuVisible}><FontAwesomeIcon icon={faBars} style={{color: '#A61723'}}/></button>
+                    {
+                        authBtn ?
+                            <>
+                                <Link to='/signup' className='auth-btn'>Sign up</Link>
+                                <Link to='/login' className='auth-btn'>Login</Link>
+                            </>
+                            : <Link to='/profile' className='auth-btn'>Profile</Link>
+                    }
+
+                    {logout ? <LogoutButton /> : <></>}
+                    <button className='toggle-theme menu' onClick={menuVisible}><FontAwesomeIcon icon={faBars} style={{ color: '#A61723' }} /></button>
                 </div>
             </div>
             <div>

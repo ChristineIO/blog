@@ -68,7 +68,9 @@ export async function updateUser(id, user) {
     return response
 }
 export async function verifyUser(user) {
-    const response = await axios.post(`${URL}/users/login`, user)
+    const response = await axios.post(`${URL}/users/login`, user, {
+        withCredentials: true
+    })
     if (response.data.success) {
         return response.data.token
     } else {
@@ -77,14 +79,13 @@ export async function verifyUser(user) {
 }
 export async function checkAuth() {
     try {
-        const response = await fetch(`${URL}/users/check-auth`, {
-            credentials: 'include'
+        const response = await axios.get(`${URL}/users/check-auth`, {
+            withCredentials: true
         });
-
-        return response
+        return response;
     } catch (error) {
-        console.error(`the error: ${error.message}`);
-        return null;
+        console.error("Auth check failed:", error);
+        return { success: false }; // Fallback incase server crashes again
     }
 }
 export async function logoutUser() {
@@ -98,7 +99,7 @@ export async function logoutUser() {
             }
         );
 
-        // should reload page
+        // should reload current page
         window.location.reload();
         return true;
     } catch (error) {

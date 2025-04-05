@@ -1,10 +1,12 @@
 // import { createRequire } from 'module';
 // const require = createRequire(import.meta.url);
+
+const ObjectId = require('mongodb').ObjectId;
 const express = require('express');
 const database = require('./connect.js');
-const ObjectId = require('mongodb').ObjectId;
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
+const e = require('express');
 
 let userRoutes = express.Router();
 const SALT_ROUNDS = 6
@@ -13,7 +15,7 @@ const cookieAge = 24 * 60 * 60 * 1000;
 userRoutes.route('/users').get(async (req, res) => {
     let db = database.getDb();
     let data = await db.collection('users').find({}).toArray()
-
+    console.log(data);
     if (data.length > 0) {
         res.json(data)
     } else {
@@ -21,27 +23,39 @@ userRoutes.route('/users').get(async (req, res) => {
     }
 })
 
+userRoutes.route('/users/check-auth').get(async (req, res) => {
+    console.log(`incoming cookies: ${req.cookies.authToken}`)
+    try {
+        //prevent multiple calls
+        const token = req.cookies.authToken;
+        
+        if (!token) {
+            return res.status(200).json({ success: false }); 
+        }
+        // token def exists
+        return res.status(200).json({ success: true });
+        
+    } catch (error) {
+        console.error("Auth check error: ", error);
+        return res.status(500).json({ error: "server error :(" });
+    }
+});
+
 userRoutes.route('/users/:id').get(async (req, res) => {
     const db = database.getDb();
-    const { id } = req.params;
-
-    // ✅ Validate ObjectId first
-    if (!ObjectId.isValid(id)) {
-        return res.status(400).json({ error: 'Invalid user ID format' });
-    }
-
-    try {
-        const data = await db.collection('users').findOne({ _id: new ObjectId(id) });
-
-        // ✅ Properly check if data exists
-        if (data) {
-            res.json(data);
-        } else {
-            res.status(404).json({ error: 'User not found' });
-        }
-    } catch (error) {
-        console.error('Error fetching user:', error);
-        res.status(500).json({ error: 'Server error' });
+    console.log("Received ID:", req.params.id);
+    console.log("Type:", typeof req.params.id);
+    // to prevent app from crashing check if id is in objectid format
+    const query = {
+        _id: ObjectId.isValid(req.params.id)
+            ? new ObjectId(req.params.id)
+            : req.params.id
+    };
+    let data = await db.collection('users').findOne(query)
+    if (data) {
+        res.json(data)
+    } else {
+        console.log('wrong data is ' + data)
     }
 })
 
@@ -62,6 +76,7 @@ userRoutes.route('/users').post(async (req, res) => {
             posts: [],
         }
         let data = await db.collection('users').insertOne(mongoObject)
+        console.log(data)
         res.json(data)
     }
 
@@ -105,8 +120,8 @@ userRoutes.route('/users/login').post(async (req, res) => {
                 httpOnly: true,
                 maxAge: cookieAge,
                 sameSite: 'strict',
-                path: '/',
-                secure: process.env.NODE_ENV === 'production'
+                secure: true,
+                path: '/'
             })
 
             res.json({ success: true, token })
@@ -127,16 +142,4 @@ userRoutes.route('/users/logout').post(async (req, res) => {
     })
     return res.json({ success: 'Session Cleared' })
 })
-
-userRoutes.route('/users/check-auth').get(async (req, res) => {
-    const token = req.cookies.authToken;
-
-    if (token) {
-        return res.sendStatus(200);
-    } else {
-        return res.sendStatus(201);
-    }
-
-})
-
 module.exports = userRoutes;
