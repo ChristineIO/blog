@@ -49,6 +49,7 @@
     border: 2px solid var(--grungy-red);
     width: 125%;
     color: var(--text-color);
+    box-sizing: inherit;
 }
 
 .dropdown-item:hover {

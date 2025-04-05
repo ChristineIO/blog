@@ -4,13 +4,21 @@ import HomeLink from "../components/HomeLink"
 import { checkAuth, getPosts, getUserPost } from "../api"
 import { jwtDecode } from "jwt-decode"
 import { Link } from "react-router-dom"
+import truncateText from "../components/truncateText"
+import PostButtons from "../components/PostButtons"
+import LogoutButton from "../components/Buttons/LogoutButton"
 
 const ProfilePage = () => {
     const [posts, setPosts] = useState([])
-    const [user, setUsers] = useState({})
+    const [logout, setLogout] = useState(false)
     useEffect(() => {
         async function loadUserData() {
             const user = await checkAuth()
+            if (user) {
+                setLogout(true)
+            } else {
+                setLogout(false)
+            }
             const token = user.data.token
             const decode_user = jwtDecode(token.toString())
             const userPosts = await getUserPost(decode_user.username)
@@ -25,7 +33,9 @@ const ProfilePage = () => {
                 <div className="logo">
                     <HomeLink />
                 </div>
+                <PostButtons />
                 <ToggleButton />
+                {logout ? <LogoutButton /> : <></>}
             </div>
             <div className="profile-content"><h1>Your Posts</h1></div>
             <div className="posts">
@@ -33,7 +43,7 @@ const ProfilePage = () => {
                     <div className='post' key={post._id}>
                         <Link to={`/posts/${post._id}`}>
                             <div className='post-content'>
-                                <p>{post.text}</p>
+                                <p>{truncateText(post.text)}</p>
                             </div>
                             <div className='post-info'>
                                 <div className='user'>

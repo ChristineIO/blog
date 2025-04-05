@@ -3,16 +3,26 @@ import HomeLink from "../components/HomeLink"
 import ToggleButton from "../components/Buttons/ToggleButton"
 import { Link } from "react-router-dom"
 import LogoutButton from "../components/Buttons/LogoutButton"
+import truncateText from "../components/truncateText"
+import { checkAuth } from "../api"
 const Posts = () => {
-    const truncateText = (text, wordLimit) => {
-        const words = text.split(" ");
-        return words.length > wordLimit
-            ? words.slice(0, wordLimit).join(" ") + "..."
-            : text;
-    };
-
     const [posts, setPost] = useState([])
+    const [authBtn, setAuthBtn] = useState(true)
+    const [logout, setLogout] = useState(false)
+    useEffect(() => {
+        const fetchAuth = async () => {
+            let userAuth = await checkAuth()
+            if (userAuth.data.success) {
+                setAuthBtn(false);
+                setLogout(true);
+            } else if (!userAuth.data.success) {
+                setLogout(false);
+                setAuthBtn(true);
+            }
+        };
 
+        fetchAuth();
+    }, [])
     useEffect(() => {
         fetch("http://localhost:5000/posts")
             .then((res) => res.json())
@@ -23,8 +33,19 @@ const Posts = () => {
         <>
             <div className="navbar">
                 <HomeLink />
-                <ToggleButton />
-                <LogoutButton />
+                <div className='auth-buttons'>
+                    <ToggleButton />
+                    {
+                        authBtn ?
+                            <>
+                                <Link to='/signup' className='auth-btn'>Sign up</Link>
+                                <Link to='/login' className='auth-btn'>Login</Link>
+                            </>
+                            : <Link to='/profile' className='auth-btn'>Profile</Link>
+                    }
+
+                    {logout ? <LogoutButton /> : <></>}
+                </div>
             </div>
             <div className="posts">
                 {posts.map((post) => (

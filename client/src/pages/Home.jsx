@@ -9,6 +9,7 @@ import LogoutButton from '../components/Buttons/LogoutButton'
 import { useEffect, useState } from 'react'
 import { getCookie } from 'react-use-cookie';
 import { checkAuth } from '../api';
+import PostButtons from '../components/PostButtons';
 
 
 
@@ -46,10 +47,8 @@ const Home = () => {
                 <div className='logo'>
                     <HomeLink />
                 </div>
-                <div className='post-btn'>
-                    <Link to='/create-post' className='auth-btn'>Create Post</Link>
-                    <Link to='/posts' className='auth-btn'>Posts</Link>
-                </div>
+                
+                <PostButtons />
 
                 <div className='auth-buttons'>
                     <ToggleButton />
