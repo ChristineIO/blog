@@ -1,10 +1,34 @@
-import { Outlet, useNavigate } from 'react-router-dom'
-import { checkAuth } from '../api'
+import { useEffect, useState } from 'react';
+import { useNavigate, Outlet } from 'react-router-dom';
+import { checkAuth } from '../api';
 
-const ProtectedRoutes = async () => {
-    let navigate = useNavigate()
-    const userAuth = await checkAuth()
-    return userAuth ? <Outlet /> : navigate('/login')
-}
+const ProtectedRoutes = () => {
+    const navigate = useNavigate();
 
-export default ProtectedRoutes
+    //null -loading
+    //false- not verified
+    //true- verified!
+    const [isAuth, setIsAuth] = useState(null);
+
+    useEffect(() => {
+        const verifyAuth = async () => {
+            const auth = await checkAuth();
+            if (!auth.data.success) {
+                navigate('/login');
+                console.log('not verified')
+            } else if (auth.data.success) {
+                setIsAuth(auth);
+            }
+        };
+
+        verifyAuth();
+    }, [navigate]);
+
+    if (isAuth == null) {
+        return <h1 style={{fontSize: '55px', textAlign: 'center', fontFamily: 'Delius'}}>Loading...</h1>;
+    }
+
+    return <Outlet />;
+};
+
+export default ProtectedRoutes;

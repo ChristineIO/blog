@@ -12,12 +12,13 @@ import Posts from './pages/Posts'
 import Post from './components/Post'
 import OnePost from './pages/OnePost'
 import ProfilePage from './pages/ProfilePage'
+import ProtectedRoutes from './utils/ProtectedRoutes'
 
 function App() {
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', 'dark')
+    document.documentElement.setAttribute('data-theme', 'light')
   }, [])
   return (
     <Router>
@@ -26,7 +27,9 @@ function App() {
         <Route path='/home' element={<Home />} />
         <Route path='/signup' element={<SignupPage />} />
         <Route path='/login' element={<LoginPage />} />
-        <Route path='/profile' element={<ProfilePage />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route path='/profile' element={<ProfilePage />} />
+        </Route>
         <Route path='/posts' element={<Posts />} />
         <Route path='/create-post' element={<CreatePost />} />
         <Route path='/posts/:id' element={<OnePost />} />
