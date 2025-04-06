@@ -63,8 +63,12 @@ userRoutes.route('/users').post(async (req, res) => {
     let db = database.getDb();
 
     const takenEmail = await db.collection('users').findOne({ email: req.body.email })
+    const takenUsername = await db.collection('users').findOne({ username: req.body.username })
     if (takenEmail) {
         res.json({ error: "Email already taken" })
+    }
+    else if (takenUsername) {
+        res.json({ error: "Username already taken" })
     } else {
         const hash = await bcrypt.hash(req.body.password, SALT_ROUNDS)
 
@@ -105,7 +109,7 @@ userRoutes.route('/users/:id').delete(async (req, res) => {
     res.json(data)
 })
 
-// For Login
+//For Login
 
 userRoutes.route('/users/login').post(async (req, res) => {
     let db = database.getDb();

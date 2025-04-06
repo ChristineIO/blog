@@ -47,6 +47,16 @@ const CreatePost = () => {
         }
 
     }
+    const characterCount = () => {
+        let textarea = document.getElementById('postArea').innerText;
+        let postBtn = document.getElementById('postBtn');
+        postBtn.disabled = true
+        console.log(postBtn.disabled)
+
+        if (textarea.length > 2) {
+            postBtn.disabled = false
+        }
+    }
 
     return (
         <>
@@ -72,8 +82,8 @@ const CreatePost = () => {
                 <h1>Login pls </h1>
             </div> : <></>}
             <form className="post-form">
-                <textarea className="post-text" name="text"></textarea>
-                <Button type='submit' text='Post' className='btn' onClick={createNewPost} />
+                <textarea id='postArea' className="post-text" name="text" onChange={characterCount}></textarea>
+                <Button type='submit' text='Post' id='potBtn' className='btn' onClick={createNewPost} disabled/>
             </form>
         </>
     )

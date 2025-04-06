@@ -83,7 +83,8 @@
 
 .profile h1 {
     margin-top: 8%;
-    margin-bottom: 15px;
+    margin-bottom: 2px;
     margin-left: 11.35%;
     font-size: 33px;
+    display: block;
 }

@@ -38,7 +38,7 @@ const SignupPage = () => {
     return (
         <>
             {error ? <div className="error-box">
-                <h1>Account not created. Try new email </h1>
+                <h1>Account can't be created. Try new email or username </h1>
             </div> : <></>}
             <div className="auth-box">
                 <form className="auth-box-content" onSubmit={handleSubmit}>
@@ -49,13 +49,6 @@ const SignupPage = () => {
                         maxLength={90} />
                     <InputFieldPassword name='password' type='password' label='Password' onChange={handleChange} maxLength={40} />
                     <Button type='submit' text='Register' className='btn' style={{ marginBottom: '25px' }} />
-                    <GoogleLogin onSuccess={(credentialResponse) => {
-                        console.log(credentialResponse)
-                        console.log(jwtDecode(credentialResponse))
-                        navigate('/home')
-                    }} onError={() => {
-                        console.log('error')
-                    }} auto_select={true} shape="pill" logo_alignment="left" theme="outline" />
                 </form>
             </div>
         </>
