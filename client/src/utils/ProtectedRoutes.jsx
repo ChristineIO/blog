@@ -25,7 +25,7 @@ const ProtectedRoutes = () => {
     }, [navigate]);
 
     if (isAuth == null) {
-        return <h1 style={{fontSize: '55px', textAlign: 'center', fontFamily: 'Delius'}}>Loading...</h1>;
+        return <h1 style={{fontSize: '55px', textAlign: 'center', fontFamily: 'Delius', justifySelf: 'center', alignSelf: 'center'}}>Loading...</h1>;
     }
 
     return <Outlet />;

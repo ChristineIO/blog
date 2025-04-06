@@ -13,6 +13,7 @@ import Post from './components/Post'
 import OnePost from './pages/OnePost'
 import ProfilePage from './pages/ProfilePage'
 import ProtectedRoutes from './utils/ProtectedRoutes'
+import NotFound from './pages/NotFound'
 
 function App() {
   const [posts, setPosts] = useState([])
@@ -29,10 +30,11 @@ function App() {
         <Route path='/login' element={<LoginPage />} />
         <Route element={<ProtectedRoutes />}>
           <Route path='/profile' element={<ProfilePage />} />
+          <Route path='/create-post' element={<CreatePost />} />
         </Route>
         <Route path='/posts' element={<Posts />} />
-        <Route path='/create-post' element={<CreatePost />} />
         <Route path='/posts/:id' element={<OnePost />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </Router>
   )
