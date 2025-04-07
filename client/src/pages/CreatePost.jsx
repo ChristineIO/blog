@@ -1,5 +1,5 @@
 import axios from "axios"
-import Button from "../components/Button"
+import Button from "../components/MyButton"
 import ToggleButton from "../components/Buttons/ToggleButton"
 import HomeLink from "../components/HomeLink"
 import './styles/CreatePost.css'
@@ -13,6 +13,8 @@ import MenuButton from "../components/Buttons/MenuButton.jsx"
 import Dropdown from "../components/Dropdown/Dropdown.jsx"
 
 const CreatePost = () => {
+    const [buttonVisible, setButtonVisible] = useState(true);
+    let [count, setCount] = useState(0)
     const [authBtn, setAuthBtn] = useState(true)
     const [logout, setLogout] = useState(false)
     const [error, setError] = useState(false)
@@ -47,16 +49,17 @@ const CreatePost = () => {
         }
 
     }
-    const characterCount = () => {
-        let textarea = document.getElementById('postArea').innerText;
-        let postBtn = document.getElementById('postBtn');
-        postBtn.disabled = true
-        console.log(postBtn.disabled)
 
-        if (textarea.length > 2) {
-            postBtn.disabled = false
+    const characterCount = () => {
+        let textarea = document.getElementById('postArea')
+        setCount(textarea.value.length)
+        console.log(count)
+        if (textarea.value.trim().length < 3) {
+            setButtonVisible(false);
+        } else if (textarea.value.length > 3) {
+            setButtonVisible(true);
         }
-    }
+    };
 
     return (
         <>
@@ -81,9 +84,10 @@ const CreatePost = () => {
             {error ? <div className="error-box">
                 <h1>Login pls </h1>
             </div> : <></>}
-            <form className="post-form">
-                <textarea id='postArea' className="post-text" name="text" onChange={characterCount}></textarea>
-                <Button type='submit' text='Post' id='potBtn' className='btn' onClick={createNewPost} disabled/>
+            <form className="post-form" onFocus={characterCount}>
+                <textarea id='postArea' className="post-text" name="text" onChange={characterCount} maxLength={800} minLength={2} placeholder="Type here..."></textarea>
+                    <p className="word-count"><span id="counter">{count}</span> / 800 </p>
+                {buttonVisible ? <Button type='submit' text='Post' id='postBtn' className='btn' onClick={createNewPost} /> : <></>}
             </form>
         </>
     )

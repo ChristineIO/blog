@@ -1,6 +1,6 @@
 import axios from "axios"
 import { verifyUser } from "../api"
-import Button from "../components/Button"
+import Button from "../components/MyButton"
 import InputField from "../components/InputField"
 import InputFieldPassword from "../components/InputFieldPassword"
 import { useState } from "react"

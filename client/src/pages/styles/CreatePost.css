@@ -3,18 +3,32 @@
     display: grid;
     justify-items: center;
     flex: calc(90% - 15px);
+    font-family: 'Delius', Arial, Helvetica, sans-serif;
 }
 
 .post-text {
     border: 3px solid var(--grungy-red);
     border-radius: 8px;
     box-shadow: 0.1px 0.1px 5px var(--grungy-red);
+    box-sizing: border-box;
     padding: 0 0 5% 1%;
     margin-top: 10px;
     width: 85%;
     max-width: 100%;
     resize: vertical;
-    height: 20rem;
+    height: 18rem;
     font-size: larger;
     font-family: 'Sour Gummy', Arial, Helvetica, sans-serif;
+    display: inline;
 }
+
+.word-count {
+    font-size: 14px;
+    display: inline;
+    border: 1px solid var(--indian-red);
+    padding: 2px 8px 2px 8px;
+    text-align: center;
+    justify-items: center;
+    align-items: center;
+    border-radius: 20px;
+  }

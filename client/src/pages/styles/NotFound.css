@@ -5,7 +5,7 @@
     align-items: center;
     padding: 100px;
     justify-self: center;
-    margin-top: 2.4%;
+    margin-top: 0.7%;
     border-radius: 50% 20% / 28% 30%;
 }
 
@@ -25,6 +25,7 @@
     align-items: center;
     text-align: center;
     font-family: 'Sour Gummy', Arial, Helvetica, sans-serif;
+    padding-top: 20px;
 }
 
 .dashed p {

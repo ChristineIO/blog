@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+import Button from '../components/MyButton'
 import './styles/NotFound.css'
 const NotFound = () => {
     return (
@@ -5,6 +7,7 @@ const NotFound = () => {
             <div className="dashed">
                 <h1>Oops... Try Again ༘⋆♡⸝⸝💌love ⊹。 °˖➴</h1>
                 <p>Wrong page ‧₊˚❀༉‧₊˚ .●・○・●</p>
+                <Link to='/home' className='auth-btn' style={{width: '90px', justifySelf: 'center', marginBottom: '25px'}}>Go Home</Link>
             </div>
         </div>
     )
