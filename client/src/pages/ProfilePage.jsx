@@ -12,6 +12,7 @@ import { faUser } from "@fortawesome/free-regular-svg-icons"
 import './styles/ProfilePage.css'
 import MenuButton from "../components/Buttons/MenuButton"
 import Dropdown from "../components/Dropdown/Dropdown"
+import Button from "../components/MyButton"
 
 const ProfilePage = () => {
     const [posts, setPosts] = useState([])
@@ -37,7 +38,7 @@ const ProfilePage = () => {
         loadUserData()
     }, [])
     return (
-        <>
+        <div className="profile-page">
             <div className="navbar">
                 <div className="logo">
                     <HomeLink />
@@ -77,7 +78,7 @@ const ProfilePage = () => {
                     ))}
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

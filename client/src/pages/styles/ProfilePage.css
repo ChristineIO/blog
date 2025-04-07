@@ -2,32 +2,6 @@
     --red-text: #fef6faa4;
 }
 
-:root[data-theme="light"] {
-    --light-coral: #F7818Fff;
-    --cherry-blossom-pink: rgb(253, 186, 197);
-    --cherry-blossom-pink-dark: rgb(218, 100, 119);
-    --pink-lavender: #E9C1E9ff;
-    --fire-engine-red: #C60F1Bff;
-    --indian-red: #E84D5Aff;
-    --grungy-red: #a61453;
-    --blue-text: #F6FFFD;
-    --background: #ffffff;
-    --text-color: #500000;
-}
-
-:root[data-theme="dark"] {
-    --light-coral: #8B3A44;
-    --cherry-blossom-pink: rgb(122, 50, 65);
-    --cherry-blossom-pink-dark: rgb(100, 35, 49);
-    --pink-lavender: #61385B;
-    --fire-engine-red: #de3f4a;
-    --indian-red: #9E2B38;
-    --grungy-red: #5E0F2A;
-    --blue-text: #edffff;
-    --background: #120000;
-    --text-color: #f5e5e5;
-}
-
 .profile-content {
     display: flex;
     min-width: 55%;
