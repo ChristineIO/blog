@@ -33,7 +33,7 @@ const ProfilePage = () => {
             setPosts(userPosts)
             setUser(decode_user.username)
             setDate(decode_user.date)
-            console.log(decode_user.username + ' ' + userPosts[1])
+            console.log(decode_user[0] + ' ' + userPosts[1])
         }
         loadUserData()
     }, [])

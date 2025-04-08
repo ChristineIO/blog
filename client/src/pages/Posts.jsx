@@ -56,7 +56,7 @@ const Posts = () => {
                     <div className='post' key={post._id}>
                         <Link to={`/posts/${post._id}`}>
                             <div className='post-content'>
-                                <p>{truncateText(post.text, 100)}</p>
+                                <p>{truncateText(post.text, 70)}</p>
                             </div>
                             <div className='post-info'>
                                 <div className='user'>

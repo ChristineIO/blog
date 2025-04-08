@@ -61,15 +61,19 @@ userRoutes.route('/users/:id').get(async (req, res) => {
 
 userRoutes.route('/users').post(async (req, res) => {
     let db = database.getDb();
-
-    const takenEmail = await db.collection('users').findOne({ email: req.body.email })
+    
     const takenUsername = await db.collection('users').findOne({ username: req.body.username })
-    if (takenEmail) {
-        res.json({ error: "Email already taken" })
+    console.log(`sending... ${takenUsername}`)
+    const takenEmail = await db.collection('users').findOne({ email: req.body.email })
+    if (takenUsername && takenEmail) {
+        res.json({ error: "Email or/and Username already taken" })
+        console.log(takenUsername + " taken " + takenEmail)
+    } else if (takenEmail) {
+        res.json({error: "Taken Email"})
+    } else if (takenUsername) {
+        res.json({error: "Taken Username"})
     }
-    else if (takenUsername) {
-        res.json({ error: "Username already taken" })
-    } else {
+    else {
         const hash = await bcrypt.hash(req.body.password, SALT_ROUNDS)
 
         let mongoObject = {

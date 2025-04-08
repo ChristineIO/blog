@@ -49,11 +49,14 @@ body {
 
 .logo {
   text-align: center;
-  flex-grow: 0.5;
+  flex-grow: 0.4;
   text-shadow: -3px -1px 0 var(--indian-red);
   cursor: pointer;
   text-decoration: dashed;
   color: var(--blue-text);
+  font-family: 'Playwrite CU', Arial, Helvetica, sans-serif;
+  padding: -10rem;
+  font-weight: 700;
 }
 
 .auth-btn {

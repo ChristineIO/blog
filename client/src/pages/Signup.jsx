@@ -1,8 +1,6 @@
 import InputField from "../components/InputField"
 import InputFieldPassword from "../components/InputFieldPassword"
 import Button from "../components/MyButton"
-import { FaGoogle } from "react-icons/fa"
-import { GoogleLogin, googleLogout } from "@react-oauth/google"
 import { useNavigate } from "react-router-dom"
 import { jwtDecode } from 'jwt-decode'
 import { createUser } from "../api"
@@ -11,9 +9,6 @@ import { useState } from "react"
 const SignupPage = () => {
     const [error, setError] = useState(false)
     const navigate = useNavigate()
-    const handleLogout = () => {
-        googleLogout()
-    }
 
     const [user, setUser] = useState({
         username: "",
@@ -44,7 +39,7 @@ const SignupPage = () => {
                 <form className="auth-box-content" onSubmit={handleSubmit}>
                     <h1>Sign Up</h1>
                     <InputField name='username' type='text' label='Username'
-                        onChange={handleChange} maxLength={16} />
+                        onChange={handleChange} maxLength={12} />
                     <InputField name='email' type='email' label='Email' onChange={handleChange}
                         maxLength={90} />
                     <InputFieldPassword name='password' type='password' label='Password' onChange={handleChange} maxLength={40} />
