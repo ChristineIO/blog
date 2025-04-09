@@ -4,9 +4,8 @@
 const ObjectId = require('mongodb').ObjectId;
 const express = require('express');
 const database = require('./connect.js');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken');
-const e = require('express');
 
 let userRoutes = express.Router();
 const SALT_ROUNDS = 6
