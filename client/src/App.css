@@ -128,7 +128,7 @@ body {
 .post-info {
   display: flex;
   justify-content: center;
-  gap: 50%;
+  gap: 40%;
   margin-top: auto;
 }
 
@@ -136,6 +136,9 @@ body {
   .post {
     display: flexbox;
     flex: calc(80% - 15px);
+  }
+  .post-info {
+    gap: 20%;
   }
 }
 
