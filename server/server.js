@@ -14,7 +14,7 @@ console.log(process.env)
 const port = 5000
 const mongoUrl = process.env.MONGO_URL
 const corsOptions = {
-    origin: ["http://localhost:5173"],
+    origin: ["https://quill-client.onrender.com"],
     methods: "GET,POST,PUT,DELETE",
     credentials: true
 }
