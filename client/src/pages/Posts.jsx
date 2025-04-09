@@ -26,7 +26,7 @@ const Posts = () => {
         fetchAuth();
     }, [])
     useEffect(() => {
-        fetch("http://localhost:5000/posts")
+        fetch("https://quill-backend-npdr.onrender.com/posts")
             .then((res) => res.json())
             .then((data) => setPost(data))
     }, [])
