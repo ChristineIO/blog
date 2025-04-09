@@ -85,12 +85,12 @@ export async function verifyUser(user) {
 export async function checkAuth() {
     try {
         const response = await axios.get(`${URL}/users/check-auth`, {
-            withCredentials: true
+            withCredentials: true,
         });
         return response;
     } catch (error) {
         console.error("Auth check failed:", error);
-        return { success: false }; // Fallback incase server crashes again
+        return { success: false }; //Fallback just incase server crashes again
     }
 }
 export async function logoutUser() {

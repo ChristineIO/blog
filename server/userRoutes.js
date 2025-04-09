@@ -126,7 +126,7 @@ userRoutes.route('/users/login').post(async (req, res) => {
             res.cookie('authToken', token, {
                 httpOnly: true,
                 maxAge: cookieAge,
-                sameSite: 'strict',
+                sameSite: 'none',
                 secure: true,
                 path: '/'
             })
