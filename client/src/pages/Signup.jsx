@@ -1,7 +1,7 @@
 import InputField from "../components/InputField"
 import InputFieldPassword from "../components/InputFieldPassword"
 import Button from "../components/MyButton"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { jwtDecode } from 'jwt-decode'
 import { createUser } from "../api"
 import { useState } from "react"
@@ -44,6 +44,7 @@ const SignupPage = () => {
                         maxLength={90} />
                     <InputFieldPassword name='password' type='password' label='Password' onChange={handleChange} maxLength={40} />
                     <Button type='submit' text='Register' className='btn' style={{ marginBottom: '25px' }} />
+                    <p style={{display: "block"}}>Have an account? <Link to='/login' style={{textDecoration: 'none', color: 'var(--indian-red)'}}>Login</Link></p>
                 </form>
             </div>
         </>

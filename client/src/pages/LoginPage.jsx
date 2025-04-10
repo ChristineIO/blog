@@ -4,7 +4,7 @@ import Button from "../components/MyButton"
 import InputField from "../components/InputField"
 import InputFieldPassword from "../components/InputFieldPassword"
 import { useState } from "react"
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 const LoginPage = () => {
     const [error, setError] = useState(false)
@@ -41,6 +41,7 @@ const LoginPage = () => {
                     <InputField label="Email" type="email" name="email" maxLength={40} onChange={handleChange} />
                     <InputFieldPassword label="Password" type="password" name="password" maxLength={40} onChange={handleChange} />
                     <Button type="submit" text="Login" className="btn" />
+                    <p style={{display: "block"}}>Create an account? <Link to='/signup' style={{textDecoration: 'none', color: 'var(--indian-red)'}}>Signup</Link></p>
                 </form>
             </div>
         </>
