@@ -1,0 +1,18 @@
+.space-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    background-color: var(--background);
+    text-align: center;
+    font-family: 'Delius', Arial, Helvetica, sans-serif;
+}
+
+.login-space {
+    border: 2px solid var(--cherry-blossom-pink-dark);
+    border-radius: 25px;
+    padding: 25px 60px 65px 60px;
+    box-shadow: 2px 4px 25px var(--fire-engine-red);
+    width: 30%;
+}

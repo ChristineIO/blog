@@ -8,13 +8,17 @@ require('dotenv').config({ path: './config.env' })
 const { connect, connectToServer } = require('./connect.js')
 const postRoutes = require('./postRoutes.js')
 const users = require('./userRoutes.js')
+let CORS_URL = process.env.PROD_URL
+if (process.env.NODE_ENV == "dev") {
+    CORS_URL = process.env.DEV_URL
+}
 
 const app = express()
 console.log(process.env)
 const port = 5000
 const mongoUrl = process.env.MONGO_URL
 const corsOptions = {
-    origin: ["https://quill-app-blond.vercel.app"],
+    origin: [`${CORS_URL}`],
     methods: "GET,POST,PUT,DELETE",
     credentials: true
 }

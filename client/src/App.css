@@ -269,3 +269,18 @@ body {
   margin-left: 10%;
   margin-bottom: -55px;
 }
+
+.filter-option {
+  justify-self: center;
+  position: relative;
+  align-self: center;
+  margin-top: 25px;
+}
+
+.filter {
+  padding: 6px;
+  width: 80px;
+  border: 1.2px solid var(--grungy-red);
+  font-family: 'Sour Gummy', Arial, Helvetica, sans-serif;
+  border-radius: 8px;
+}

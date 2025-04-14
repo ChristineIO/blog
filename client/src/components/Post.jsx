@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import truncateText from "./truncateText"
+let URL = import.meta.env.VITE_URL
+if (import.meta.env.VITE_NODE_ENV == "dev") {
+    URL = import.meta.env.VITE_DEV_URL
+}
 
 const Post = ({ post: propPost }) => {
     const [posts, setPost] = useState([])
 
     useEffect(() => {
-        fetch("https://quill-backend-npdr.onrender.com/posts")
+        fetch(`${URL}/posts`)
             .then((res) => res.json())
             .then((data) => setPost(data))
     }, [])
