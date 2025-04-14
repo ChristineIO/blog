@@ -11,6 +11,35 @@ const Posts = () => {
     const [posts, setPost] = useState([])
     const [authBtn, setAuthBtn] = useState(true)
     const [logout, setLogout] = useState(false)
+    const [filterOption, setFilterOption] = useState("all");
+    let URL = import.meta.env.VITE_URL
+    if (import.meta.env.VITE_NODE_ENV == "dev") {
+        URL = import.meta.env.VITE_DEV_URL
+    }
+    const now = new Date()
+    const filteredPosts = [...posts]
+        .sort((a, b) => new Date(b.date) - new Date(a.date)) // im adding this to sort the newest first regardles
+        .filter(post => {
+            const postDate = new Date(post.date);
+            console.log(`post date = ${postDate}`)
+
+            if (filterOption === "recent") {
+                const diffHours = (now - postDate) / (1000 * 60 * 60);
+                return diffHours <= 24;
+            }
+
+            if (filterOption === "week") {
+                const diffDays = (now - postDate) / (1000 * 60 * 60 * 24);
+                return diffDays <= 7;
+            }
+
+            if (filterOption === "month") {
+                return postDate.getMonth() === now.getMonth() &&
+                    postDate.getFullYear() === now.getFullYear();
+            }
+
+            return true;
+        });
     useEffect(() => {
         const fetchAuth = async () => {
             let userAuth = await checkAuth()
@@ -26,7 +55,7 @@ const Posts = () => {
         fetchAuth();
     }, [])
     useEffect(() => {
-        fetch("https://quill-backend-npdr.onrender.com/posts")
+        fetch(`${URL}/posts`)
             .then((res) => res.json())
             .then((data) => setPost(data))
     }, [])
@@ -51,8 +80,17 @@ const Posts = () => {
                 </div>
             </div>
             <Dropdown />
+            <div className="filter-option">
+                <select name="Filter" onChange={(e) => setFilterOption(e.target.value)} value={filterOption} className="filter">
+                    <option disabled>Filter</option>
+                    <option value="all">All</option>
+                    <option value="recent">Recent</option>
+                    <option value="month">Month</option>
+                    <option value="week">Week</option>
+                </select>
+            </div>
             <div className="posts">
-                {posts.map((post) => (
+                {filteredPosts.map((post) => (
                     <div className='post' key={post._id}>
                         <Link to={`/posts/${post._id}`}>
                             <div className='post-content'>

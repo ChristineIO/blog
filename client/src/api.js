@@ -1,7 +1,11 @@
 import axios from "axios";
 axios.defaults.withCredentials = true
-const URL = "https://quill-backend-npdr.onrender.com"
-
+let URL = "http://localhost:5000"
+if (import.meta.env.VITE_NODE_ENV == "production") {
+    URL = "https://quill-backend-npdr.onrender.com"
+} else if (import.meta.env.VITE_NODE_ENV == "dev") {
+    URL = "http://localhost:5000"
+}
 // posts
 
 export async function getPosts() {
