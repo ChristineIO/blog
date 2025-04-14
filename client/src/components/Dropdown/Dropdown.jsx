@@ -3,6 +3,8 @@ import { Link } from "react-router-dom"
 import { useEffect, useState } from 'react'
 import { checkAuth } from '../../api'
 import LogoutButton from '../Buttons/LogoutButton'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserGroup } from '@fortawesome/free-solid-svg-icons'
 const Dropdown = ({ style }) => {
     const [authBtn, setAuthBtn] = useState(true)
     const [logout, setLogout] = useState(false)
@@ -26,6 +28,7 @@ const Dropdown = ({ style }) => {
                 <div id='dropdown-list'>
                     <Link to='/create-post' className='dropdown-item'>Create Post</Link>
                     <Link to='/posts' className='dropdown-item'>Posts</Link>
+                    <Link to='/spaces' className='dropdown-item'><FontAwesomeIcon icon={faUserGroup}/> Spaces</Link>
                     {authBtn ?
                         <>
                             <Link to='/signup' className='dropdown-item'>Sign up</Link>
