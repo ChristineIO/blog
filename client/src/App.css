@@ -199,10 +199,10 @@ body {
 
 .btn {
   padding: 15px;
-  background-color: var(--cherry-blossom-pink);
-  color: white;
-  border: 2px solid var(--grungy-red);
-  border-radius: 10px;
+  background-color: var(--light-coral);
+  color: var(--blue-text);
+  border: 3px solid var(--cherry-blossom-pink-dark);
+  border-radius: 30px;
   margin-top: 35px;
   font-family: 'Delius', Arial, Helvetica, sans-serif;
   width: 60%;

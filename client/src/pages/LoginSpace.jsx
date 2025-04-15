@@ -11,6 +11,8 @@ import './styles/LoginSpace.css'
 import InputField from "../components/InputField"
 import InputFieldPassword from "../components/InputFieldPassword"
 import Button from "../components/MyButton"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faUserGroup, faUserPlus } from "@fortawesome/free-solid-svg-icons"
 
 
 const LoginSpace = () => {
@@ -96,7 +98,7 @@ const LoginSpace = () => {
                 <h1>Please try again </h1>
             </div> : <></>}
             <div className="space-form">
-                <Button text={stateText} className='btn' style={{ width: '40%' }} onClick={() => {
+                <Button text={<FontAwesomeIcon icon={faUserPlus}/>} className='btn' style={{ width: '15%' }} onClick={() => {
                     setLogin(!login)
                 }} />
                 {login ? <div className="login-space">

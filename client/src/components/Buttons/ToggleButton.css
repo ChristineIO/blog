@@ -8,3 +8,12 @@
   position: absolute;
   cursor: pointer;
 }
+
+.toggle-theme:hover{
+  color: #BF2C47;
+  transform: scale(1.2);
+  transition: all 0.3s ease-in-out;
+}
+.toggle-theme:focus{
+  transition: all 0.3s ease-in-out;
+}
