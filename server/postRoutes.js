@@ -75,7 +75,6 @@ postRoutes.route('/spaces/posts').post(verifyToken, async (req, res) => {
         user: req.body.user.username,
         date: new Date().toISOString(),
     }
-    console.log(mongoObject)
     let data = await db.collection('spaces').updateOne({ name: req.body.name }, { $push: { posts: mongoObject } })
     if (data) {
         return res.json({ success: true, data })
