@@ -21,10 +21,12 @@ const SpacePage = () => {
                 <PostButtons />
                 <div className='auth-buttons'>
                     <ToggleButton />
+                    <MenuButton />
                 </div>
-                <Dropdown />
-                <MenuButton />
             </div>
+            <>
+                <Dropdown style={{ display: 'block' }} />
+            </>
             <div className="space-page">
                 <h1 className="space-name">{spaceName}</h1>
                 <div className="posts">

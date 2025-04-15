@@ -21,7 +21,6 @@ const LoginSpace = () => {
     const [logout, setLogout] = useState(false)
     const [login, setLogin] = useState(1)
     const [error, setError] = useState(false)
-    let stateText = login ? 'Login to Space' : 'Create Space'
     useEffect(() => {
         const fetchAuth = async () => {
             let userAuth = await checkAuth()
@@ -92,13 +91,13 @@ const LoginSpace = () => {
                     {logout ? <LogoutButton /> : <></>}
                     <MenuButton />
                 </div>
-                <><Dropdown /></>
             </div>
+            <><Dropdown /></>
             {error ? <div className="error-box">
                 <h1>Please try again </h1>
             </div> : <></>}
             <div className="space-form">
-                <Button text={<FontAwesomeIcon icon={faUserPlus}/>} className='btn' style={{ width: '15%' }} onClick={() => {
+                <Button text={<FontAwesomeIcon icon={faUserPlus} />} className='btn' style={{ width: '15%' }} onClick={() => {
                     setLogin(!login)
                 }} />
                 {login ? <div className="login-space">
