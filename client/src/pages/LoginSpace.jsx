@@ -1,24 +1,15 @@
 import HomeLink from "../components/HomeLink"
 import PostButtons from "../components/PostButtons"
 import ToggleButton from "../components/Buttons/ToggleButton"
-<<<<<<< HEAD
 import { Link, useNavigate } from "react-router-dom"
 import LogoutButton from "../components/Buttons/LogoutButton"
 import Dropdown from "../components/Dropdown/Dropdown"
 import { useEffect, useState } from 'react'
 import { checkAuth, createSpace, getSpaces } from "../api"
-=======
-import { Link } from "react-router-dom"
-import LogoutButton from "../components/Buttons/LogoutButton"
-import Dropdown from "../components/Dropdown/Dropdown"
-import { useEffect, useState } from 'react'
-import { checkAuth } from "../api"
->>>>>>> c20b9a3d8af957dc566e5b6b383dcf922289d29b
 import MenuButton from "../components/Buttons/MenuButton"
 import './styles/LoginSpace.css'
 import InputField from "../components/InputField"
 import InputFieldPassword from "../components/InputFieldPassword"
-<<<<<<< HEAD
 import Button from "../components/MyButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUserGroup, faUserPlus } from "@fortawesome/free-solid-svg-icons"
@@ -31,12 +22,6 @@ const LoginSpace = () => {
     const [login, setLogin] = useState(1)
     const [error, setError] = useState(false)
     let stateText = login ? 'Login to Space' : 'Create Space'
-=======
-
-const LoginSpace = () => {
-    const [authBtn, setAuthBtn] = useState(true)
-    const [logout, setLogout] = useState(false)
->>>>>>> c20b9a3d8af957dc566e5b6b383dcf922289d29b
     useEffect(() => {
         const fetchAuth = async () => {
             let userAuth = await checkAuth()
@@ -51,7 +36,6 @@ const LoginSpace = () => {
 
         fetchAuth();
     }, [])
-<<<<<<< HEAD
     async function handleSubmit(e) {
         e.preventDefault()
         let data = {
@@ -87,9 +71,6 @@ const LoginSpace = () => {
             setError(true)
         }
     }
-=======
-
->>>>>>> c20b9a3d8af957dc566e5b6b383dcf922289d29b
     return (
         <>
             <div className="navbar">
@@ -113,7 +94,6 @@ const LoginSpace = () => {
                 </div>
                 <><Dropdown /></>
             </div>
-<<<<<<< HEAD
             {error ? <div className="error-box">
                 <h1>Please try again </h1>
             </div> : <></>}
@@ -136,16 +116,6 @@ const LoginSpace = () => {
                         <Button type='submit' text='Create' className='btn' />
                     </form>
                 </div>}
-=======
-            <div className="space-form">
-                <div className="login-space">
-                    <h1>Login To Space</h1>
-                    <form className="login-space-form" action="/login" method="POST">
-                        <InputField type='text' name='space' label='Name of Space' maxLength={12} />
-                        <InputFieldPassword type='password' label='Space Password' name='password'/>
-                    </form>
-                </div>
->>>>>>> c20b9a3d8af957dc566e5b6b383dcf922289d29b
             </div>
 
         </>

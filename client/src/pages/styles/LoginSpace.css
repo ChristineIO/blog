@@ -3,30 +3,22 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-<<<<<<< HEAD
     margin: 30px;
-=======
-    height: 80vh;
->>>>>>> c20b9a3d8af957dc566e5b6b383dcf922289d29b
     background-color: var(--background);
     text-align: center;
     font-family: 'Delius', Arial, Helvetica, sans-serif;
 }
 
-<<<<<<< HEAD
 .space-form button:hover {
     transform: scale(1.05);
     transition: all 0.3s ease-in-out;
 }
 
-=======
->>>>>>> c20b9a3d8af957dc566e5b6b383dcf922289d29b
 .login-space {
     border: 2px solid var(--cherry-blossom-pink-dark);
     border-radius: 25px;
     padding: 25px 60px 65px 60px;
     box-shadow: 2px 4px 25px var(--fire-engine-red);
-<<<<<<< HEAD
     width: 60%;
     margin: auto;
     margin-bottom: 50px;
@@ -42,7 +34,4 @@
         font-size: 1.5rem;
     }
     
-=======
-    width: 30%;
->>>>>>> c20b9a3d8af957dc566e5b6b383dcf922289d29b
 }

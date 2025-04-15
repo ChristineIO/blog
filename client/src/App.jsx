@@ -15,10 +15,7 @@ import ProfilePage from './pages/ProfilePage'
 import ProtectedRoutes from './utils/ProtectedRoutes'
 import NotFound from './pages/NotFound'
 import LoginSpace from './pages/LoginSpace'
-<<<<<<< HEAD
 import SpacePage from './pages/SpacePage'
-=======
->>>>>>> c20b9a3d8af957dc566e5b6b383dcf922289d29b
 
 function App() {
   const [posts, setPosts] = useState([])
@@ -39,10 +36,7 @@ function App() {
         </Route>
         <Route path='/posts' element={<Posts />} />
         <Route path='/spaces' element={<LoginSpace />} />
-<<<<<<< HEAD
         <Route path='/spaces/:name' element={<SpacePage />} />
-=======
->>>>>>> c20b9a3d8af957dc566e5b6b383dcf922289d29b
         <Route path='/posts/:id' element={<OnePost />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
