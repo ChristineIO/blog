@@ -38,10 +38,10 @@ postRoutes.route('/posts/userPosts/:user').get(async (req, res) => {
 })
 
 // when the user makes a request to the backend to see if the space exists, we check if the space exists in the database and return the data to the frontend
-postRoutes.route('/spaces/access').post(async (req, res) => { 
+postRoutes.route('/spaces/access').post(async (req, res) => {
     let db = database.getDb();
     let data = await db.collection('spaces').findOne({ name: req.body.name })
-    if (data) { 
+    if (data) {
         let isMatch = await db.collection('spaces').findOne({ password: req.body.password })
         if (isMatch) {
             res.json(data)
@@ -52,11 +52,27 @@ postRoutes.route('/spaces/access').post(async (req, res) => {
         return res.status(404).json({ success: false, message: 'Space not found' })
     }
 })
+postRoutes.route('/spaces').post(async (req, res) => {
+    let db = database.getDb();
+    const takenName = await db.collection('spaces').findOne({ name: req.body.name })
+    if (takenName) {
+        res.json({ success: false, message: 'Space name already taken' })
+    } else {
+        let hash = await bcrypt.hash(req.body.password, 6)
+        let mongoObject = {
+            name: req.body.name,
+            password: hash,
+            posts: []
+        }
+        let data = await db.collection('spaces').insertOne(mongoObject)
+        res.json({success: true, data})
+    }
+})
 // HOW?
 // we fetch db
 // we check if the namme given exists in the db
-    // if it does then check if the password is correct
-    // if it does, we return the data to the frontend
+// if it does then check if the password is correct
+// if it does, we return the data to the frontend
 
 postRoutes.route('/posts/:id').get(async (req, res) => {
     let db = database.getDb();

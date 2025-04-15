@@ -23,7 +23,6 @@ userRoutes.route('/users').get(async (req, res) => {
 })
 
 userRoutes.route('/users/check-auth').get(async (req, res) => {
-    console.log(`incoming cookies: ${req.cookies.authToken}`)
     try {
         //prevent multiple calls
         const token = req.cookies.authToken;

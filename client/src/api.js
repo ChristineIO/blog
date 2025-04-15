@@ -15,6 +15,13 @@ export async function getSpaces(data) {
     return response
 }
 
+export async function createSpace(space) {
+    const response = await axios.post(`${URL}/spaces`, space, {
+        withCredentials: true
+    })
+    return response
+}
+
 // posts
 
 export async function getPosts() {
