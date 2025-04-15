@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Delius&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
 
-:root[data-theme = "light"] {
+:root[data-theme="light"] {
   --light-coral: #F7818Fff;
   --cherry-blossom-pink: rgb(253, 186, 197);
   --cherry-blossom-pink-dark: rgb(218, 100, 119);
@@ -13,7 +13,7 @@
   --text-color: #500000;
 }
 
-:root[data-theme = "dark"] {
+:root[data-theme="dark"] {
   --light-coral: #8B3A44;
   --cherry-blossom-pink: rgb(122, 50, 65);
   --cherry-blossom-pink-dark: rgb(100, 35, 49);
@@ -101,7 +101,7 @@ body {
   padding: 10px;
 }
 
-.post > a {
+.post>a {
   color: var(--text-color);
   text-decoration: none;
   font-family: 'Sour Gummy', Arial, Helvetica, sans-serif;
@@ -137,6 +137,7 @@ body {
     display: flexbox;
     flex: calc(80% - 15px);
   }
+
   .post-info {
     gap: 20%;
   }
@@ -263,7 +264,7 @@ body {
   font-family: 'Delius', Arial, Helvetica, sans-serif;
 }
 
-.profile > h1 {
+.profile>h1 {
   color: var(--text-color);
   font-size: 33px;
   margin-left: 10%;
@@ -283,4 +284,5 @@ body {
   border: 1.2px solid var(--grungy-red);
   font-family: 'Sour Gummy', Arial, Helvetica, sans-serif;
   border-radius: 8px;
+  cursor: pointer;
 }

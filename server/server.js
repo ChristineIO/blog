@@ -1,11 +1,12 @@
 // import { createRequire } from 'module'
 // const require = createRequire(import.meta.url);
+
+require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose')
-require('dotenv').config({ path: './config.env' })
-const { connect, connectToServer } = require('./connect.js')
+const {  connectToServer } = require('./connect.js')
 const postRoutes = require('./postRoutes.js')
 const users = require('./userRoutes.js')
 let CORS_URL = process.env.PROD_URL
@@ -14,7 +15,6 @@ if (process.env.NODE_ENV == "dev") {
 }
 
 const app = express()
-console.log(process.env)
 const port = 5000
 const mongoUrl = process.env.MONGO_URL
 const corsOptions = {

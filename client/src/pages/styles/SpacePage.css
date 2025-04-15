@@ -1,0 +1,15 @@
+.space-name {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-family: 'Delius', cursive;
+}
+
+.space-page {
+    padding: 2rem;
+    /* background-color: var(--blue-text); */
+}
+
+.space-page h1 {
+    text-align: center;
+}

@@ -3,6 +3,7 @@
 const express = require('express');
 const database = require('./connect.js');
 const ObjectId = require('mongodb').ObjectId;
+let bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 let postRoutes = express.Router();
@@ -35,6 +36,27 @@ postRoutes.route('/posts/userPosts/:user').get(async (req, res) => {
         console.error(data)
     }
 })
+
+// when the user makes a request to the backend to see if the space exists, we check if the space exists in the database and return the data to the frontend
+postRoutes.route('/spaces/access').post(async (req, res) => { 
+    let db = database.getDb();
+    let data = await db.collection('spaces').findOne({ name: req.body.name })
+    if (data) { 
+        let isMatch = await db.collection('spaces').findOne({ password: req.body.password })
+        if (isMatch) {
+            res.json(data)
+        } else {
+            return res.status(401).json({ success: false, message: 'Invalid password' })
+        }
+    } else {
+        return res.status(404).json({ success: false, message: 'Space not found' })
+    }
+})
+// HOW?
+// we fetch db
+// we check if the namme given exists in the db
+    // if it does then check if the password is correct
+    // if it does, we return the data to the frontend
 
 postRoutes.route('/posts/:id').get(async (req, res) => {
     let db = database.getDb();
