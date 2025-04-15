@@ -40,15 +40,21 @@ const LoginSpace = () => {
             name: e.target.name.value,
             password: e.target.password.value
         }
-        let response = await getSpaces(data)
-        let posts = response.data.posts
-        let stringPosts = JSON.stringify(posts)
+        try {
+            let response = await getSpaces(data)
+            let posts = response.data.posts
+            let stringPosts = JSON.stringify(posts)
 
-        let spaceName = response.data.name
-        console.log(`response.data is ${stringPosts} abd ${spaceName}`)
-        sessionStorage.setItem('spacePosts', stringPosts)
-        sessionStorage.setItem('spaceName', spaceName)
-        navigate(`/spaces/${spaceName}`)
+            let spaceName = response.data.name
+            console.log(`response.data is ${stringPosts} abd ${spaceName}`)
+            sessionStorage.setItem('spacePosts', stringPosts)
+            sessionStorage.setItem('spaceName', spaceName)
+            navigate(`/spaces/${spaceName}`)
+        }
+        catch (error) {
+            console.log(error)
+            setError(true)
+        }
     }
     async function createNewSpace(e) {
         e.preventDefault()
@@ -87,12 +93,12 @@ const LoginSpace = () => {
                 <><Dropdown /></>
             </div>
             {error ? <div className="error-box">
-                <h1>Account can't be created. Try new email or username </h1>
+                <h1>Please try again </h1>
             </div> : <></>}
             <div className="space-form">
-                <Button text={stateText} className='btn' style={{width: '40%'}} onClick={() => {
+                <Button text={stateText} className='btn' style={{ width: '40%' }} onClick={() => {
                     setLogin(!login)
-                }}/>
+                }} />
                 {login ? <div className="login-space">
                     <h1>Login To Space</h1>
                     <form className="login-space-form" onSubmit={handleSubmit}>

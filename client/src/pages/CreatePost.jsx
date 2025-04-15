@@ -5,7 +5,7 @@ import HomeLink from "../components/HomeLink"
 import './styles/CreatePost.css'
 import { useState, useEffect } from "react"
 import { useNavigate, Link } from "react-router-dom"
-import { checkAuth, createPost, verifyUser } from '../api.js'
+import { checkAuth, createPost, createSpacePost, getSpaces, verifyUser } from '../api.js'
 import LogoutButton from "../components/Buttons/LogoutButton.jsx"
 import Cookies from 'js-cookie'
 import authVerify from "../components/authVerify.js"
@@ -18,7 +18,12 @@ const CreatePost = () => {
     const [authBtn, setAuthBtn] = useState(true)
     const [logout, setLogout] = useState(false)
     const [error, setError] = useState(false)
+    let currentSpace = sessionStorage.getItem('spaceName')
+    const [space, setSpace] = useState(false)
     useEffect(() => {
+        if (currentSpace) {
+            setSpace(true)
+        }
         const fetchAuth = async () => {
             let userAuth = await checkAuth()
             if (userAuth.data.success) {
@@ -49,11 +54,27 @@ const CreatePost = () => {
         }
 
     }
+    const postToSpace = async (e) => {
+        e.preventDefault()
+        let postUser = {
+            name: currentSpace,
+            text: document.querySelector('.post-text').value,
+            user: 'rosey22',
+            date: new Date().toISOString().split('T')[0],
+        }
+        try {
+            let createPostAction = await createSpacePost(postUser)
+            console.log("createPostAction is " + JSON.stringify(createPostAction.data))
+            // navigate(`/spaces/${currentSpace}`)
+        } catch (err) {
+            console.log(err)
+        }
+
+    }
 
     const characterCount = () => {
         let textarea = document.getElementById('postArea')
         setCount(textarea.value.length)
-        console.log(count)
         if (textarea.value.trim().length < 3) {
             setButtonVisible(false);
         } else if (textarea.value.length > 3) {
@@ -86,8 +107,16 @@ const CreatePost = () => {
             </div> : <></>}
             <form className="post-form" onFocus={characterCount}>
                 <textarea id='postArea' className="post-text" name="text" onChange={characterCount} maxLength={800} minLength={2} placeholder="Type here..."></textarea>
-                    <p className="word-count"><span id="counter">{count}</span> / 800 </p>
-                {buttonVisible ? <Button type='submit' text='Post' id='postBtn' className='btn' onClick={createNewPost} /> : <></>}
+                <p className="word-count"><span id="counter">{count}</span> / 800 </p>
+                {buttonVisible ?
+                    <div className="btn-container">
+                        <Button type='submit' text='Post' id='postBtn' className='btn' onClick={createNewPost} />
+                        {space ? <>
+                            <div className="br"></div>
+                            <Button style={{ backgroundColor: '#f2c5cc' }} type='submit' text='Post to Space' className='btn' onClick={postToSpace} />
+                        </> : <></>}
+                    </div>
+                    : <></>}
             </form>
         </>
     )

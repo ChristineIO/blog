@@ -15,12 +15,26 @@ export async function getSpaces(data) {
     return response
 }
 
+export async function getSpace(name) {
+    const response = await axios.get(`${URL}/spaces/${name}`, {
+        withCredentials: true
+    })
+    return response
+}
+
 export async function createSpace(space) {
     const response = await axios.post(`${URL}/spaces`, space, {
         withCredentials: true
     })
     return response
 }
+
+export async function createSpacePost(post) {
+    const response = await axios.post(`${URL}/spaces/posts`, post)
+    return response
+}
+
+
 
 // posts
 

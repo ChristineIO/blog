@@ -10,6 +10,8 @@ const SpacePage = () => {
     let rawPosts = sessionStorage.getItem('spacePosts')
     let posts = JSON.parse(rawPosts)
     let spaceName = sessionStorage.getItem('spaceName')
+    console.log('spaceName is ' + spaceName)
+    console.log('posts are ' + posts)
     return (
         <>
             <div className="navbar">
@@ -34,7 +36,7 @@ const SpacePage = () => {
                                 </div>
                                 <div className="post-info">
                                     <div className="user">
-                                        <p>{post.user}</p>
+                                        <p>{post.user || 'Unknown User'}</p>
                                     </div>
                                     <div className="date">
                                         <p>{new Date(post.date).toLocaleDateString()}</p>

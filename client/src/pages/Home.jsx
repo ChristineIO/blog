@@ -9,17 +9,24 @@ import { getCookie } from 'react-use-cookie';
 import { checkAuth } from '../api';
 import PostButtons from '../components/PostButtons';
 import MenuButton from '../components/Buttons/MenuButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserFriends, faUserGroup, faUsersRays } from '@fortawesome/free-solid-svg-icons';
 
 const Home = () => {
     const [authBtn, setAuthBtn] = useState(true)
     const [logout, setLogout] = useState(false)
+    const [space, setSpace] = useState(false)
+    let currentSpace = sessionStorage.getItem('spaceName')
     useEffect(() => {
+        if (currentSpace) {
+            setSpace(true)
+        }
         const fetchAuth = async () => {
             let userAuth = await checkAuth()
             if (userAuth.data.success) {
                 setAuthBtn(false);
                 setLogout(true);
-            } else if (!userAuth.data.success){
+            } else if (!userAuth.data.success) {
                 setLogout(false);
                 setAuthBtn(true);
             }
@@ -34,7 +41,7 @@ const Home = () => {
                 <div className='logo'>
                     <HomeLink />
                 </div>
-                
+
                 <PostButtons />
 
                 <div className='auth-buttons'>
@@ -45,7 +52,10 @@ const Home = () => {
                                 <Link to='/signup' className='auth-btn'>Sign up</Link>
                                 <Link to='/login' className='auth-btn'>Login</Link>
                             </>
-                            : <Link to='/profile' className='auth-btn'>Profile</Link>
+                            : <>
+                                {space ? <Link to={`spaces/${currentSpace}`} className='auth-btn'><FontAwesomeIcon icon={faUsersRays}/>   {currentSpace}</Link> : <></>}
+                                <Link to='/profile' className='auth-btn'>Profile</Link>
+                            </>
                     }
 
                     {logout ? <LogoutButton /> : <></>}

@@ -244,7 +244,7 @@ body {
 }
 
 .error-box {
-  background-color: var(--fire-engine-red);
+  background-color: var(--indian-red);
   color: white;
   text-align: center;
   justify-self: center;
@@ -253,8 +253,8 @@ body {
   margin: auto;
   margin-top: 10px;
   margin-bottom: 5px;
-  border-radius: 15px;
-  font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
+  border-radius: 5px;
+  font-family: 'Delius', Arial, Helvetica, sans-serif;
   font-size: x-small;
 }
 

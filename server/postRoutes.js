@@ -68,11 +68,22 @@ postRoutes.route('/spaces').post(async (req, res) => {
         res.json({success: true, data})
     }
 })
-// HOW?
-// we fetch db
-// we check if the namme given exists in the db
-// if it does then check if the password is correct
-// if it does, we return the data to the frontend
+postRoutes.route('/spaces/posts').post(verifyToken, async (req, res) => {
+    let db = database.getDb();
+    let mongoObject = {
+        text: req.body.text,
+        user: req.body.user.username,
+        date: new Date().toISOString(),
+    }
+    console.log(mongoObject)
+    let data = await db.collection('spaces').updateOne({ name: req.body.name }, { $push: { posts: mongoObject } })
+    if (data) {
+        return res.json({ success: true, data })
+    }
+    else {
+        console.log('unacceptable data is ' + data)
+    }
+})
 
 postRoutes.route('/posts/:id').get(async (req, res) => {
     let db = database.getDb();
