@@ -5,12 +5,14 @@ import HomeLink from "../components/HomeLink"
 import './styles/CreatePost.css'
 import { useState, useEffect } from "react"
 import { useNavigate, Link } from "react-router-dom"
-import { checkAuth, createPost, createSpacePost, getSpaces, verifyUser } from '../api.js'
+import { checkAuth, createPost, createSpacePost, getSpace, getSpaces, verifyUser } from '../api.js'
 import LogoutButton from "../components/Buttons/LogoutButton.jsx"
 import Cookies from 'js-cookie'
 import authVerify from "../components/authVerify.js"
 import MenuButton from "../components/Buttons/MenuButton.jsx"
 import Dropdown from "../components/Dropdown/Dropdown.jsx"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faUserGroup, faUsersRays } from "@fortawesome/free-solid-svg-icons"
 
 const CreatePost = () => {
     const [buttonVisible, setButtonVisible] = useState(true);
@@ -64,8 +66,14 @@ const CreatePost = () => {
         }
         try {
             let createPostAction = await createSpacePost(postUser)
-            console.log("createPostAction is " + JSON.stringify(createPostAction.data))
-            // navigate(`/spaces/${currentSpace}`)
+            let mySpace = await getSpace(currentSpace)
+            console.log("createPostAction is " + JSON.stringify(mySpace.data))
+            let posts = mySpace.data.space.posts
+            let stringPosts = JSON.stringify(posts)
+            console.log('stringPosts is ' + stringPosts)
+            sessionStorage.setItem('spacePosts', stringPosts)
+            sessionStorage.setItem('spaceName', currentSpace)
+            navigate(`/spaces/${currentSpace}`)
         } catch (err) {
             console.log(err)
         }
@@ -94,7 +102,12 @@ const CreatePost = () => {
                                 <Link to='/signup' className='auth-btn'>Sign up</Link>
                                 <Link to='/login' className='auth-btn'>Login</Link>
                             </>
-                            : <Link to='/profile' className='auth-btn'>Profile</Link>
+                            : <>
+                                {space ? <Link to={`spaces/${currentSpace}`} className='auth-btn'><FontAwesomeIcon icon={faUsersRays}/>{currentSpace}</Link> : <></>}
+                               
+        
+                            <Link to='/profile' className='auth-btn'>Profile</Link>
+                            </>
                     }
 
                     {logout ? <LogoutButton /> : <></>}

@@ -42,11 +42,11 @@ postRoutes.route('/spaces/access').post(async (req, res) => {
     let db = database.getDb();
     let data = await db.collection('spaces').findOne({ name: req.body.name })
     if (data) {
-        let isMatch = await db.collection('spaces').findOne({ password: req.body.password })
+        let isMatch = bcrypt.compareSync(req.body.password, data.password)
         if (isMatch) {
             res.json(data)
         } else {
-            return res.status(401).json({ success: false, message: 'Invalid password' })
+            res.status(401).json({ success: false, message: 'Invalid password sadly <3' })
         }
     } else {
         return res.status(404).json({ success: false, message: 'Space not found' })
@@ -84,6 +84,24 @@ postRoutes.route('/spaces/posts').post(verifyToken, async (req, res) => {
         console.log('unacceptable data is ' + data)
     }
 })
+
+postRoutes.route('/spaces/:name').get(async (req, res) => {
+    const db = database.getDb();
+
+    try {
+        const space = await db.collection('spaces').findOne({ name: req.params.name });
+
+        if (!space) {
+            return res.json({ success: false, message: "Space not found" });
+        } else {
+            res.json({ success: true, space });            
+        }
+
+        
+    } catch (err) {
+        console.error(err);
+    }
+});
 
 postRoutes.route('/posts/:id').get(async (req, res) => {
     let db = database.getDb();
