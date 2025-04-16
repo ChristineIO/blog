@@ -1,7 +1,5 @@
 .space-name {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
+    font-size: 2.5rem;
     font-family: 'Delius', cursive;
 }
 
@@ -12,4 +10,9 @@
 
 .space-page h1 {
     text-align: center;
+}
+
+.no-posts {
+   color: var(--grungy-red);
+   text-align: center;
 }

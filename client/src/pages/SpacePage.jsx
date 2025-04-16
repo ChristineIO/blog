@@ -30,9 +30,9 @@ const SpacePage = () => {
             <div className="space-page">
                 <h1 className="space-name">{spaceName}</h1>
                 <div className="posts">
-                    {posts && posts.map((post => {
+                    {posts.length > 0 ? posts.map((post, index) => {
                         return (
-                            <div className="post" key={post.user}>
+                            <div className="post" key={index}>
                                 <div className="post-content">
                                     <p>{post.text}</p>
                                 </div>
@@ -46,7 +46,7 @@ const SpacePage = () => {
                                 </div>
                             </div>
                         )
-                    }))}
+                    }) : <div className="no-posts"><h1>No posts yet</h1></div>}
                 </div>
             </div>
         </>

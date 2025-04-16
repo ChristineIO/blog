@@ -88,11 +88,11 @@ body {
 
 .posts {
   position: relative;
-  display: -ms-flexbox;
+  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   width: 88%;
-  justify-self: anchor-center;
+  justify-self: center;
   align-content: center;
   font-family: 'Fredoka', Arial, Helvetica, sans-serif;
   color: var(--text-color);

@@ -97,7 +97,7 @@ const LoginSpace = () => {
                 <h1>Please try again </h1>
             </div> : <></>}
             <div className="space-form">
-                <Button text={<FontAwesomeIcon icon={faUserPlus} />} className='btn' style={{ width: '15%' }} onClick={() => {
+                <Button text={<FontAwesomeIcon icon={faUserPlus} />} className='btn' onClick={() => {
                     setLogin(!login)
                 }} />
                 {login ? <div className="login-space">

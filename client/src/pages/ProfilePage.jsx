@@ -59,7 +59,7 @@ const ProfilePage = () => {
                 </div>
                 <h1>Your Posts</h1>
                 <div className="posts">
-                    {posts.map((post) => (
+                    {posts.length > 0 ? posts.map((post) => (
                         <div className='post' key={post._id}>
                             <Link to={`/posts/${post._id}`}>
                                 <div className='post-content'>
@@ -75,7 +75,7 @@ const ProfilePage = () => {
                                 </div>
                             </Link>
                         </div>
-                    ))}
+                    )) : <h1 className="no-posts">No posts yet.</h1>}
                 </div>
             </div>
         </div>
