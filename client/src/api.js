@@ -22,6 +22,13 @@ export async function getSpace(name) {
     return response
 }
 
+export async function getUserSpacePosts(name) { 
+    const response = await axios.get(`${URL}/spaces/posts/${name}`, {
+        withCredentials: true
+    })
+    return response.data
+}
+
 export async function createSpace(space) {
     const response = await axios.post(`${URL}/spaces`, space, {
         withCredentials: true

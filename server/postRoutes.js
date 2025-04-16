@@ -102,6 +102,16 @@ postRoutes.route('/spaces/:name').get(async (req, res) => {
     }
 });
 
+postRoutes.route('/spaces/posts/:user').get(verifyToken, async (req, res) => {
+    let db = database.getDb();
+    let data = await db.collection('spaces').find({'posts.user': req.body.user.username}).toArray()
+    if (data) {
+        res.json(data)
+    } else {
+        console.error(data)
+    }
+})
+
 postRoutes.route('/posts/:id').get(async (req, res) => {
     let db = database.getDb();
     const query = {

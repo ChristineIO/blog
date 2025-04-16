@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react"
+import { use, useEffect, useState } from "react"
 import ToggleButton from "../components/Buttons/ToggleButton"
 import HomeLink from "../components/HomeLink"
-import { checkAuth, getPosts, getUserPost } from "../api"
+import { checkAuth, getPosts, getUserPost, getUserSpacePosts } from "../api"
 import { jwtDecode } from "jwt-decode"
 import { Link } from "react-router-dom"
 import truncateText from "../components/truncateText"
@@ -16,9 +16,11 @@ import Button from "../components/MyButton"
 
 const ProfilePage = () => {
     const [posts, setPosts] = useState([])
+    const [spacePosts, setSpacePosts] = useState([])
     const [logout, setLogout] = useState(false)
     const [user, setUser] = useState('')
     const [date, setDate] = useState('')
+    let currentSpaceName = sessionStorage.getItem('spaceName')
     useEffect(() => {
         async function loadUserData() {
             const user = await checkAuth()
@@ -34,6 +36,13 @@ const ProfilePage = () => {
             setUser(decode_user.username)
             setDate(decode_user.date)
             console.log(decode_user[0] + ' ' + userPosts[1])
+            let userSpacePosts = await getUserSpacePosts(decode_user.username)
+            let spaces = userSpacePosts
+
+            const postsByUser = spaces.flatMap(space =>
+                space.posts.filter(post => post.user === decode_user.username)
+            );
+            setSpacePosts(postsByUser)
         }
         loadUserData()
     }, [])
@@ -76,6 +85,24 @@ const ProfilePage = () => {
                             </Link>
                         </div>
                     )) : <h1 className="no-posts">No posts yet.</h1>}
+                </div>
+                <h1>Space Posts</h1>
+                <div className="posts">
+                    {spacePosts.length > 0 ? spacePosts.map((post, index) => (
+                        <div className='post' key={index}>
+                            <div className='post-content'>
+                                <p>{truncateText(post.text, 33)}</p>
+                            </div>
+                            <div className='post-info'>
+                                <div className='user'>
+                                    <p>{post.user || 'Unknown User'}</p>
+                                </div>
+                                <div className='date'>
+                                    <p>{new Date(post.date).toLocaleDateString()}</p>
+                                </div>
+                            </div>
+                        </div>
+                    )) : <h1 className="no-posts">No space posts yet.</h1>}
                 </div>
             </div>
         </div>
