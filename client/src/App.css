@@ -101,6 +101,13 @@ body {
   padding: 10px;
 }
 
+@media screen and (max-width: 650px) {
+  .posts {
+    width: 115%;
+  }
+  
+}
+
 .post>a {
   color: var(--text-color);
   text-decoration: none;
@@ -121,8 +128,10 @@ body {
 }
 
 .post-content {
-  text-transform: capitalize;
+  text-transform: none;
   text-overflow: ellipsis;
+  text-align:start;
+  font-weight: 500;
 }
 
 .post-info {
