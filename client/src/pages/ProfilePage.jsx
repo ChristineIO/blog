@@ -66,7 +66,7 @@ const ProfilePage = () => {
                         <div className="info"><span>Profile Created: </span> {date.split('T')[0]}</div>
                     </div>
                 </div>
-                <h1>Your Posts</h1>
+                <h1>Your Posts ({posts.length})</h1>
                 <div className="posts">
                     {posts.length > 0 ? posts.map((post) => (
                         <div className='post' key={post._id}>
@@ -86,7 +86,7 @@ const ProfilePage = () => {
                         </div>
                     )) : <h1 className="no-posts">No posts yet.</h1>}
                 </div>
-                <h1>Space Posts</h1>
+                <h1>Space Posts ({spacePosts.length})</h1>
                 <div className="posts">
                     {spacePosts.length > 0 ? spacePosts.map((post, index) => (
                         <div className='post' key={index}>
