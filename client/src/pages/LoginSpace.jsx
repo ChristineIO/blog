@@ -103,7 +103,7 @@ const LoginSpace = () => {
                 {login ? <div className="login-space">
                     <h1>Login To Space</h1>
                     <form className="login-space-form" onSubmit={handleSubmit}>
-                        <InputField type='text' name='name' label='Name of Space' maxLength={12} />
+                        <InputField type='text' name='name' label='Name of Space (case sensitive)' maxLength={12} />
                         <InputFieldPassword type='password' label='Space Password' name='password' />
                         <Button type='submit' text='Login' className='btn' />
                     </form>
