@@ -120,7 +120,7 @@ const CreatePost = () => {
             </div> : <></>}
             <form className="post-form" onFocus={characterCount}>
                 <textarea id='postArea' className="post-text" name="text" onChange={characterCount} maxLength={900} minLength={2} placeholder="Type here..."></textarea>
-                <p className="word-count"><span id="counter">{count}</span> / 800 </p>
+                <p className="word-count"><span id="counter">{count}</span> / 900 </p>
                 {buttonVisible ?
                     <div className="btn-container">
                         <Button type='submit' text='Post' id='postBtn' className='btn' onClick={createNewPost} />
