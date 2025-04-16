@@ -47,6 +47,17 @@
     flex: calc(90% - 15px);
 }
 
+@media screen and (max-width: 800px) {
+    .btn-container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 88%;
+    }
+    
+}
+
 .btn-container button {
     cursor: pointer;
 }

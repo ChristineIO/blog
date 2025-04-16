@@ -37,7 +37,7 @@ const Dropdown = ({ style }) => {
                     <Link to='/create-post' className='dropdown-item'>Create Post</Link>
                     <Link to='/posts' className='dropdown-item'>Posts</Link>
                     <Link to='/spaces' className='dropdown-item'><FontAwesomeIcon icon={faUserGroup} /> Spaces</Link>
-                    {space ? <Link to={`spaces/${currentSpace}`} className='dropdown-item'><FontAwesomeIcon icon={faUsersRays} />   {currentSpace}</Link> : <></>}
+                    {space ? <Link to={`/spaces/${currentSpace}`} className='dropdown-item'><FontAwesomeIcon icon={faUsersRays} />   {currentSpace}</Link> : <></>}
                     {authBtn ?
                         <>
                             <Link to='/signup' className='dropdown-item'>Sign up</Link>
