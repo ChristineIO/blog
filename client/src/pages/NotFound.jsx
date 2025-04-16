@@ -3,9 +3,6 @@ import Button from '../components/MyButton'
 import './styles/NotFound.css'
 import { useEffect } from 'react'
 const NotFound = () => {
-    useEffect(() => {
-        document.title = 'Not Found ✮⋆˙˖'
-     }, [])
     return (
         <div className='not-found'>
             <div className="dashed">
