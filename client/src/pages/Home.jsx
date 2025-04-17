@@ -10,7 +10,7 @@ import { checkAuth } from '../api';
 import PostButtons from '../components/PostButtons';
 import MenuButton from '../components/Buttons/MenuButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserFriends, faUserGroup, faUsersRays } from '@fortawesome/free-solid-svg-icons';
+import { faUsersRays } from '@fortawesome/free-solid-svg-icons';
 
 const Home = () => {
     const [authBtn, setAuthBtn] = useState(true)
