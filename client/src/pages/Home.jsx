@@ -53,7 +53,7 @@ const Home = () => {
                                 <Link to='/login' className='auth-btn'>Login</Link>
                             </>
                             : <>
-                                {space ? <Link to={`spaces/${currentSpace}`} className='auth-btn'><FontAwesomeIcon icon={faUsersRays}/>   {currentSpace}</Link> : <></>}
+                                {space ? <Link to={`/spaces/${currentSpace}`} className='auth-btn'><FontAwesomeIcon icon={faUsersRays}/>   {currentSpace}</Link> : <></>}
                                 <Link to='/profile' className='auth-btn'>Profile</Link>
                             </>
                     }

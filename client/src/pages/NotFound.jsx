@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom'
-import Button from '../components/MyButton'
 import './styles/NotFound.css'
-import { useEffect } from 'react'
 const NotFound = () => {
     return (
         <div className='not-found'>

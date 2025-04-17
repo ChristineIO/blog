@@ -71,6 +71,7 @@ postRoutes.route('/spaces').post(async (req, res) => {
 postRoutes.route('/spaces/posts').post(verifyToken, async (req, res) => {
     let db = database.getDb();
     let mongoObject = {
+        _id: new ObjectId(),
         text: req.body.text,
         user: req.body.user.username,
         date: new Date().toISOString(),

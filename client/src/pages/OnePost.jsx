@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom"
-import { getPost } from "../api";
+import { jwtDecode } from "jwt-decode";
+import { Link, useParams, useNavigate } from "react-router-dom"
+import { deletePost, getPost, checkAuth } from "../api";
 import HomeLink from "../components/HomeLink"
 import ToggleButton from "../components/Buttons/ToggleButton"
+import Button from "../components/MyButton";
+import './styles/Post.css'
 
 const OnePost = () => {
     const [post, setPost] = useState({})
+    const [auth, setAuth] = useState(false)
     let params = useParams()
     let id = params.id;
+    let navigate = useNavigate()
 
     useEffect(() => {
         async function loadPost() {
@@ -17,8 +22,22 @@ const OnePost = () => {
             } else {
                 return <h1>Blog Does Not Exist</h1>
             }
+            const user = await checkAuth()
+            const token = user.data.token
+            const decode_user = jwtDecode(token.toString())
+            const username = decode_user.username
+            if (username === data.user && user.data.success) {
+                setAuth(true)
+            } else {
+                setAuth(false)
+            }
         } loadPost()
     }, [])
+
+    const deletePostAction = async () => {
+        await deletePost(id)
+        navigate('/posts')
+    }
 
     return (
         <>
@@ -48,6 +67,10 @@ const OnePost = () => {
                     </div>
                 </div>
             </div>
+            {auth ? <div className="delete-btn">
+
+                <Button text='Delete Post' className='btn' onClick={deletePostAction} />
+            </div> : <></>}
         </>
     )
 }
