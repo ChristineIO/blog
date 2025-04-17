@@ -41,7 +41,15 @@ export async function createSpacePost(post) {
     return response
 }
 
+export async function getSpacePosts() {
+    const response = await axios.get(`${URL}/spaces/posts`)
+    return response.data
+}
 
+export async function getSpacePost(id) {
+    const response = await axios.get(`${URL}/spaces/posts/${id}`)
+    return response.data
+}
 
 // posts
 

@@ -68,6 +68,41 @@ postRoutes.route('/spaces').post(async (req, res) => {
         res.json({success: true, data})
     }
 })
+
+postRoutes.route('/spaces/posts').get(async (req, res) => { 
+    let db = database.getDb();
+    const space = await db.collection('spaces').findOne({ name: req.body.name })
+    if (space) {
+        let posts = space.posts
+        res.json({ success: true, posts })
+    } else {
+        res.status(404).json({ success: false, message: 'Space not found' })
+     }
+
+})
+
+postRoutes.route('/spaces/posts/:id').get(async (req, res) => { 
+    let db = database.getDb();
+    const query = {
+        _id: ObjectId.isValid(req.params.id)
+            ? new ObjectId(req.params.id)
+            : req.params.id
+    };
+    let data = await db.collection('spaces').findOne(
+        { "posts._id": query._id },
+        {
+            projection: {
+                "posts.$": 1
+            }
+        })
+    if (data) {
+        console.log(data + 'is the data')
+        res.json(data)
+    } else {
+        console.log('unacceptable data is ' + data)
+    }
+})
+
 postRoutes.route('/spaces/posts').post(verifyToken, async (req, res) => {
     let db = database.getDb();
     let mongoObject = {

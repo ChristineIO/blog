@@ -1,4 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { getSpace } from "../api";
+import { Link, useNavigate } from "react-router-dom";
 import HomeLink from "../components/HomeLink";
 import PostButtons from "../components/PostButtons";
 import ToggleButton from "../components/Buttons/ToggleButton";
@@ -7,11 +9,19 @@ import Dropdown from "../components/Dropdown/Dropdown";
 import MenuButton from "../components/Buttons/MenuButton";
 
 const SpacePage = () => {
-    let rawPosts = sessionStorage.getItem('spacePosts')
-    let posts = JSON.parse(rawPosts)
+    const [posts, setPosts] = useState([])
     let spaceName = sessionStorage.getItem('spaceName')
-    console.log('spaceName is ' + spaceName)
-    console.log('posts are ' + posts)
+
+    useEffect(() => {
+        async function loadSpaceData() {
+            let data = spaceName;
+            let response = await getSpace(data)
+            let spacePosts = response.data.space.posts
+            setPosts(spacePosts)
+        }
+        loadSpaceData()
+    }, [])
+
     return (
         <>
             <div className="navbar">
@@ -33,6 +43,7 @@ const SpacePage = () => {
                     {posts.length > 0 ? posts.map((post, index) => {
                         return (
                             <div className="post" key={index}>
+                                <Link to={`/spaces/posts/${post._id}`}>
                                 <div className="post-content">
                                     <p>{post.text}</p>
                                 </div>
@@ -44,6 +55,7 @@ const SpacePage = () => {
                                         <p>{new Date(post.date).toLocaleDateString()}</p>
                                     </div>
                                 </div>
+                                </Link>
                             </div>
                         )
                     }) : <div className="no-posts"><h1>No posts yet</h1></div>}

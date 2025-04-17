@@ -6,7 +6,7 @@ const LogoutButton = ({classMarkup = 'auth-btn'}) => {
     let navigate = useNavigate()
     const handleLogout = async () => {
         await logoutUser()
-        navigate('/')
+        window.location.reload()
     }
 
     return (
