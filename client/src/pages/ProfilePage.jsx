@@ -35,10 +35,10 @@ const ProfilePage = () => {
             setPosts(userPosts)
             setUser(decode_user.username)
             setDate(decode_user.date)
-            console.log(decode_user[0] + ' ' + userPosts[1])
+            console.log(decode_user.username)
             let userSpacePosts = await getUserSpacePosts(decode_user.username)
             let spaces = userSpacePosts
-
+            console.log(spaces)
             const postsByUser = spaces.flatMap(space =>
                 space.posts.filter(post => post.user === decode_user.username)
             );
@@ -90,17 +90,19 @@ const ProfilePage = () => {
                 <div className="posts">
                     {spacePosts.length > 0 ? spacePosts.map((post, index) => (
                         <div className='post' key={index}>
-                            <div className='post-content'>
-                                <p>{truncateText(post.text, 33)}</p>
-                            </div>
-                            <div className='post-info'>
-                                <div className='user'>
-                                    <p>{post.user || 'Unknown User'}</p>
+                            <Link to={`/spaces/posts/${post._id}`}>
+                                <div className='post-content'>
+                                    <p>{truncateText(post.text, 33)}</p>
                                 </div>
-                                <div className='date'>
-                                    <p>{new Date(post.date).toLocaleDateString()}</p>
+                                <div className='post-info'>
+                                    <div className='user'>
+                                        <p>{post.user || 'Unknown User'}</p>
+                                    </div>
+                                    <div className='date'>
+                                        <p>{new Date(post.date).toLocaleDateString()}</p>
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
                         </div>
                     )) : <h1 className="no-posts">No space posts yet.</h1>}
                 </div>

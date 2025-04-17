@@ -138,7 +138,7 @@ postRoutes.route('/spaces/:name').get(async (req, res) => {
     }
 });
 
-postRoutes.route('/spaces/posts/:user').get(verifyToken, async (req, res) => {
+postRoutes.route('/spaces/posts/userPosts/:user').get(verifyToken, async (req, res) => {
     let db = database.getDb();
     let data = await db.collection('spaces').find({'posts.user': req.body.user.username}).toArray()
     if (data) {

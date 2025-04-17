@@ -7,6 +7,7 @@ import ToggleButton from "../components/Buttons/ToggleButton";
 import './styles/SpacePage.css'
 import Dropdown from "../components/Dropdown/Dropdown";
 import MenuButton from "../components/Buttons/MenuButton";
+import truncateText from "../components/truncateText";
 
 const SpacePage = () => {
     const [posts, setPosts] = useState([])
@@ -45,7 +46,7 @@ const SpacePage = () => {
                             <div className="post" key={index}>
                                 <Link to={`/spaces/posts/${post._id}`}>
                                 <div className="post-content">
-                                    <p>{post.text}</p>
+                                    <p>{truncateText(post.text, 33)}</p>
                                 </div>
                                 <div className="post-info">
                                     <div className="user">
