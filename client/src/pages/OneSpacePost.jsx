@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import { Link, useParams, useNavigate } from "react-router-dom"
-import { deletePost, getSpacePost, checkAuth } from "../api";
+import { deleteSpacePost, getSpacePost, checkAuth } from "../api";
 import HomeLink from "../components/HomeLink"
 import ToggleButton from "../components/Buttons/ToggleButton"
 import Button from "../components/MyButton";
@@ -38,8 +38,12 @@ const OneSpacePost = () => {
     }, [])
 
     const deletePostAction = async () => {
-        await deletePost(id)
-        navigate('/posts')
+        let response = await deleteSpacePost(id)
+        if (response.data.success) {
+            navigate('/profile')
+        } else {
+            console.log('Error deleting post')
+        }
     }
 
     return (

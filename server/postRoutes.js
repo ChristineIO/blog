@@ -76,6 +76,7 @@ postRoutes.route('/spaces/posts').get(async (req, res) => {
         let posts = space.posts
         res.json({ success: true, posts })
     } else {
+        console.log('unacceptable data is ' + space)
         res.status(404).json({ success: false, message: 'Space not found' })
      }
 
@@ -116,7 +117,7 @@ postRoutes.route('/spaces/posts').post(verifyToken, async (req, res) => {
         return res.json({ success: true, data })
     }
     else {
-        console.log('unacceptable data is ' + data)
+        return res.json({ success: false, message: 'Failed to create post' })
     }
 })
 
@@ -125,7 +126,6 @@ postRoutes.route('/spaces/:name').get(async (req, res) => {
 
     try {
         const space = await db.collection('spaces').findOne({ name: req.params.name });
-
         if (!space) {
             return res.json({ success: false, message: "Space not found" });
         } else {
@@ -145,6 +145,24 @@ postRoutes.route('/spaces/posts/userPosts/:user').get(verifyToken, async (req, r
         res.json(data)
     } else {
         console.error(data)
+    }
+})
+
+postRoutes.route('/spaces/posts/:id').delete(verifyToken, async (req, res) => {
+    let db = database.getDb();
+    const query = {
+        _id: ObjectId.isValid(req.params.id)
+            ? new ObjectId(req.params.id)
+            : req.params.id
+    };
+    const data = await db.collection('spaces').updateOne(
+        { "posts._id": query._id },
+        { $pull: { posts: { _id: query._id } } }
+    );
+    if (data) {
+        res.json({success: true, data})
+    } else {
+        console.log('unacceptable data is ' + data)
     }
 })
 

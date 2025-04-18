@@ -6,6 +6,7 @@ if (import.meta.env.VITE_NODE_ENV == "production") {
 } else if (import.meta.env.VITE_NODE_ENV == "dev") {
     URL = "http://localhost:5000"
 }
+console.log("URL is " + URL)
 
 // spaces
 export async function getSpaces(data) {
@@ -49,6 +50,11 @@ export async function getSpacePosts() {
 export async function getSpacePost(id) {
     const response = await axios.get(`${URL}/spaces/posts/${id}`)
     return response.data
+}
+
+export async function deleteSpacePost(id) {
+    const response = await axios.delete(`${URL}/spaces/posts/${id}`)
+    return response
 }
 
 // posts

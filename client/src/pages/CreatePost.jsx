@@ -22,6 +22,7 @@ const CreatePost = () => {
     const [error, setError] = useState(false)
     let currentSpace = sessionStorage.getItem('spaceName')
     const [space, setSpace] = useState(false)
+    const [spaceBtn, setSpaceBtn] = useState(true)
     useEffect(() => {
         if (currentSpace) {
             setSpace(true)
@@ -66,11 +67,13 @@ const CreatePost = () => {
         }
         try {
             let createPostAction = await createSpacePost(postUser)
+            if (createPostAction.data.success !== false) { 
+                setSpaceBtn(false)
+            }
             let mySpace = await getSpace(currentSpace)
             console.log("createPostAction is " + JSON.stringify(mySpace.data))
             let posts = mySpace.data.space.posts
             let stringPosts = JSON.stringify(posts)
-            console.log('stringPosts is ' + stringPosts)
             sessionStorage.setItem('spacePosts', stringPosts)
             sessionStorage.setItem('spaceName', currentSpace)
             navigate(`/spaces/${currentSpace}`)
@@ -124,7 +127,7 @@ const CreatePost = () => {
                 {buttonVisible ?
                     <div className="btn-container">
                         <Button type='submit' text='Post' id='postBtn' className='btn' onClick={createNewPost} />
-                        {space ? <>
+                        {space && spaceBtn  ? <>
                             <div className="br"></div>
                             <Button style={{ backgroundColor: '#f2c5cc' }} type='submit' text='Post to Space' className='btn' onClick={postToSpace} />
                         </> : <></>}

@@ -62,6 +62,15 @@
     cursor: pointer;
 }
 
+.btn-container button:focus {
+    background-color: var(--grungy-red);
+    color: white;
+    border: 2px solid var(--grungy-red);
+    box-shadow: 0.1px 0.1px 5px var(--grungy-red);
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+}
+
 .br {
     border-left: 2px solid var(--grungy-red);
     height: 50px;
