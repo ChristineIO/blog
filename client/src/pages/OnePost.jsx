@@ -5,11 +5,18 @@ import { deletePost, getPost, checkAuth } from "../api";
 import HomeLink from "../components/HomeLink"
 import ToggleButton from "../components/Buttons/ToggleButton"
 import Button from "../components/MyButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 import './styles/Post.css'
 
 const OnePost = () => {
     const [post, setPost] = useState({})
     const [auth, setAuth] = useState(false)
+    const [modalOpen, setModalOpen] = useState(false)
+    const openModal = () => {
+        setModalOpen(true)
+        document.body.style.overflow = 'hidden'
+    }
     let params = useParams()
     let id = params.id;
     let navigate = useNavigate()
@@ -69,8 +76,18 @@ const OnePost = () => {
             </div>
             {auth ? <div className="delete-btn">
 
-                <Button text='Delete Post' className='btn' onClick={deletePostAction} />
+                <Button text='Delete Post' className='btn' onClick={openModal} />
             </div> : <></>}
+            {modalOpen ? <section className="modal">
+                <div className="overlay"></div>
+                <div className="modal-content">
+                    <h2>Are you sure about that? </h2>
+                    <Button text='Delete Post' className='btn' onClick={deletePostAction} />
+                    <button className="close-modal" onClick={() => {setModalOpen(false)}}>
+                        <FontAwesomeIcon icon={faClose} className="close-icon" />
+                    </button>
+                </div>
+            </section> : <></>}
         </>
     )
 }

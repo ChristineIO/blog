@@ -6,10 +6,17 @@ import HomeLink from "../components/HomeLink"
 import ToggleButton from "../components/Buttons/ToggleButton"
 import Button from "../components/MyButton";
 import './styles/Post.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 
 const OneSpacePost = () => {
     const [post, setPost] = useState({})
     const [auth, setAuth] = useState(false)
+    const [modalOpen, setModalOpen] = useState(false)
+    const openModal = () => {
+        setModalOpen(true)
+        document.body.style.overflow = 'hidden'
+    }
     let params = useParams()
     let id = params.id;
     let navigate = useNavigate()
@@ -27,7 +34,7 @@ const OneSpacePost = () => {
             const token = authUser.data.token
             const decode_user = jwtDecode(token.toString())
             const username = decode_user.username
-            if(postData[0].user === username && authUser.data.success) {
+            if (postData[0].user === username && authUser.data.success) {
                 setAuth(true)
             }
             else {
@@ -76,8 +83,18 @@ const OneSpacePost = () => {
             </div>
             {auth ? <div className="delete-btn">
 
-                <Button text='Delete Post' className='btn' onClick={deletePostAction} />
+                <Button text='Delete Post' className='btn' onClick={openModal} />
             </div> : <></>}
+            {modalOpen ? <section className="modal">
+                <div className="overlay"></div>
+                <div className="modal-content">
+                    <h2>Are you sure about that? </h2>
+                    <Button text='Delete Post' className='btn' onClick={deletePostAction} />
+                    <button className="close-modal" onClick={() => {setModalOpen(false)}}>
+                        <FontAwesomeIcon icon={faClose} className="close-icon" />
+                    </button>
+                </div>
+            </section> : <></>}
         </>
     )
 }
