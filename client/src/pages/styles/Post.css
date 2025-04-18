@@ -41,7 +41,7 @@ body.active-modal {
     transform: translate(-50%, -50%);
     line-height: 1.4;
     box-shadow: 2px 4px 25px var(--cherry-blossom-pink);
-    background: #f1f1f1;
+    background: var(--background);
     padding: 18px 28px;
     border-radius: 3px;
     max-width: 600px;
@@ -68,4 +68,5 @@ body.active-modal {
     font-size: 20px;
     cursor: pointer;
     border-style: hidden;
+    color: var(--text-color);
 }
