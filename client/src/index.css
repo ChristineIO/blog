@@ -21,3 +21,13 @@
 
     border-radius: 20px;
 }
+
+::selection {
+    background: var(--indian-red);
+    color: #000;    
+}
+
+::spelling-error {
+    background: #f2d3d3;
+    color: #000;    
+}
