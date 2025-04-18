@@ -132,6 +132,7 @@ body {
   text-overflow: ellipsis;
   text-align:start;
   font-weight: 500;
+  line-height: 25px;
 }
 
 .post-info {

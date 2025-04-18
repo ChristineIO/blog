@@ -47,7 +47,7 @@ const SpacePage = () => {
                             <div className="post" key={index}>
                                 <Link to={`/spaces/posts/${post._id}`}>
                                 <div className="post-content">
-                                    <p>{truncateText(post.text, 33)}</p>
+                                    <p>{truncateText(post.text, 79)}</p>
                                 </div>
                                 <div className="post-info">
                                     <div className="user">
