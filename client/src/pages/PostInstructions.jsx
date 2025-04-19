@@ -21,7 +21,7 @@ const PostInstructions = () => {
                             <td>Big Header</td>
                         </tr>
                         <tr>
-                            <td># Subtitle</td>
+                            <td>## Subtitle</td>
                             <td>Smaller Header</td>
                         </tr>
                         <tr>
