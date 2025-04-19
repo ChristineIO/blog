@@ -61,12 +61,3 @@ body.active-modal {
     right: 10px;
     padding: 5px 7px;
 }
-
-.close-modal {
-    background: transparent;
-    border-color: transparent;
-    font-size: 20px;
-    cursor: pointer;
-    border-style: hidden;
-    color: var(--text-color);
-}

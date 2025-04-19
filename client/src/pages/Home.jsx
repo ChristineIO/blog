@@ -10,12 +10,13 @@ import { checkAuth } from '../api';
 import PostButtons from '../components/PostButtons';
 import MenuButton from '../components/Buttons/MenuButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUsersRays } from '@fortawesome/free-solid-svg-icons';
+import { faClose, faUsersRays } from '@fortawesome/free-solid-svg-icons';
 
 const Home = () => {
     const [authBtn, setAuthBtn] = useState(true)
     const [logout, setLogout] = useState(false)
     const [space, setSpace] = useState(false)
+    const [navAlert, setNavAlert] = useState(true)
     let currentSpace = sessionStorage.getItem('spaceName')
     useEffect(() => {
         if (currentSpace) {
@@ -53,7 +54,7 @@ const Home = () => {
                                 <Link to='/login' className='auth-btn'>Login</Link>
                             </>
                             : <>
-                                {space ? <Link to={`/spaces/${currentSpace}`} className='auth-btn'><FontAwesomeIcon icon={faUsersRays}/>   {currentSpace}</Link> : <></>}
+                                {space ? <Link to={`/spaces/${currentSpace}`} className='auth-btn'><FontAwesomeIcon icon={faUsersRays} />   {currentSpace}</Link> : <></>}
                                 <Link to='/profile' className='auth-btn'>Profile</Link>
                             </>
                     }
@@ -62,6 +63,12 @@ const Home = () => {
                     <MenuButton />
                 </div>
             </div>
+
+            {navAlert ? <div className='nav-alert'  style={{ color: 'var(--text-color)' }}>
+                <button className='close-btn' onClick={() => setNavAlert(false)}><FontAwesomeIcon icon={faClose} /></button>
+                <h3>Check Out</h3>
+                <div><Link to='/instructions' style={{ padding: '8px', fontSize: '15px', color: 'var(--text-color)'}}>Post Instructions</Link></div>
+            </div> : <></>}
             <div>
                 <Dropdown />
             </div>

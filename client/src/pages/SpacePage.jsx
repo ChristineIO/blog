@@ -8,6 +8,7 @@ import './styles/SpacePage.css'
 import Dropdown from "../components/Dropdown/Dropdown";
 import MenuButton from "../components/Buttons/MenuButton";
 import truncateText from "../components/truncateText";
+import ReactMarkdown from "react-markdown";
 
 const SpacePage = () => {
     const [posts, setPosts] = useState([])
@@ -47,7 +48,7 @@ const SpacePage = () => {
                             <div className="post" key={index}>
                                 <Link to={`/spaces/posts/${post._id}`}>
                                 <div className="post-content">
-                                    <p>{truncateText(post.text, 79)}</p>
+                                    <ReactMarkdown>{truncateText(post.text, 79)}</ReactMarkdown>
                                 </div>
                                 <div className="post-info">
                                     <div className="user">

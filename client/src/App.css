@@ -303,3 +303,25 @@ body {
   border-radius: 8px;
   cursor: pointer;
 }
+
+.nav-alert {
+  background-color: var(--pink-lavender);
+  height: 50px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--pink-lavender);
+  text-align: center;
+  padding: 0 10% 0 5%;
+  font-family: 'Delius', Arial, Helvetica, sans-serif;
+}
+
+.close-btn {
+  background: transparent;
+  border-color: transparent;
+  font-size: 20px;
+  cursor: pointer;
+  border-style: hidden;
+  color: var(--text-color);
+}

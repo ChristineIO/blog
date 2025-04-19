@@ -17,6 +17,7 @@ import NotFound from './pages/NotFound'
 import LoginSpace from './pages/LoginSpace'
 import SpacePage from './pages/SpacePage'
 import OneSpacePost from './pages/OneSpacePost'
+import PostInstructions from './pages/PostInstructions'
 
 function App() {
   const [posts, setPosts] = useState([])
@@ -41,6 +42,7 @@ function App() {
         <Route path='/posts/:id' element={<OnePost />} />
         <Route path='/posts/userPosts/:user' element={<Posts />} />
         <Route path='/spaces/posts/:id' element={<OneSpacePost />} />
+        <Route path='/instructions' element={<PostInstructions />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </Router>
