@@ -12,7 +12,7 @@ import { faUser } from "@fortawesome/free-regular-svg-icons"
 import './styles/ProfilePage.css'
 import MenuButton from "../components/Buttons/MenuButton"
 import Dropdown from "../components/Dropdown/Dropdown"
-import Button from "../components/MyButton"
+import ReactMarkdown from "react-markdown"
 
 const ProfilePage = () => {
     const [posts, setPosts] = useState([])
@@ -72,7 +72,7 @@ const ProfilePage = () => {
                         <div className='post' key={post._id}>
                             <Link to={`/posts/${post._id}`}>
                                 <div className='post-content'>
-                                    <p>{truncateText(post.text, 33)}</p>
+                                    <ReactMarkdown>{truncateText(post.text, 33)}</ReactMarkdown>
                                 </div>
                                 <div className='post-info'>
                                     <div className='user'>
@@ -92,7 +92,7 @@ const ProfilePage = () => {
                         <div className='post' key={index}>
                             <Link to={`/spaces/posts/${post._id}`}>
                                 <div className='post-content'>
-                                    <p>{truncateText(post.text, 33)}</p>
+                                    <ReactMarkdown>{truncateText(post.text, 33)}</ReactMarkdown>
                                 </div>
                                 <div className='post-info'>
                                     <div className='user'>
