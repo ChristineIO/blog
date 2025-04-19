@@ -7,6 +7,8 @@ import truncateText from "../components/truncateText"
 import { checkAuth } from "../api"
 import MenuButton from "../components/Buttons/MenuButton"
 import Dropdown from "../components/Dropdown/Dropdown"
+import ReactMarkdown from 'react-markdown'
+
 const Posts = () => {
     const [posts, setPost] = useState([])
     const [authBtn, setAuthBtn] = useState(true)
@@ -94,7 +96,7 @@ const Posts = () => {
                     <div className='post' key={post._id}>
                         <Link to={`/posts/${post._id}`}>
                             <div className='post-content'>
-                                <p>{truncateText(post.text, 70)}</p>
+                                <ReactMarkdown>{truncateText(post.text, 70)}</ReactMarkdown>
                             </div>
                             <div className='post-info'>
                                 <div className='user'>

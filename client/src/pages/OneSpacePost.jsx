@@ -8,6 +8,7 @@ import Button from "../components/MyButton";
 import './styles/Post.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
+import ReactMarkdown from 'react-markdown'
 
 const OneSpacePost = () => {
     const [post, setPost] = useState({})
@@ -69,7 +70,7 @@ const OneSpacePost = () => {
             <div className="posts" style={{ minHeight: '0' }}>
                 <div className='post'>
                     <div className='post-content' style={{fontSize: '17px', lineHeight: '1.6'}}>
-                        <p>{post.text || 'Unknown Content'}</p>
+                        <ReactMarkdown>{post.text || 'Unknown Content'}</ReactMarkdown>
                     </div>
                     <div className='post-info'>
                         <div className='user'>
