@@ -11,6 +11,7 @@
   --blue-text: #F6FFFD;
   --background: #ffffff;
   --text-color: #500000;
+  --second-text-color: #0c0000;
 }
 
 :root[data-theme="dark"] {
@@ -24,6 +25,7 @@
   --blue-text: #edffff;
   --background: #120000;
   --text-color: #f5e5e5;
+  --second-text-color: #f5e5e5;
 }
 
 body {
@@ -111,7 +113,7 @@ body {
 .post>a {
   color: var(--text-color);
   text-decoration: none;
-  font-family: 'Fredoka', Arial, Helvetica, sans-serif;
+  font-family: 'Fredoka', Arial, sans-serif;
 }
 
 .post {
@@ -130,11 +132,16 @@ body {
 .post-content {
   text-transform: none;
   text-overflow: ellipsis;
-  text-align:start;
+  text-align: left;
   font-weight: 500;
-  line-height: 25px;
+  color: var(--second-text-color);
+  overflow: hidden;
 }
 
+.post-content>p {
+  text-align: left;
+  line-height: 1.8;
+}
 .post-info {
   display: flex;
   justify-content: center;

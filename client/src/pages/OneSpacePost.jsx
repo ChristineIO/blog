@@ -68,7 +68,7 @@ const OneSpacePost = () => {
             </div>
             <div className="posts" style={{ minHeight: '0' }}>
                 <div className='post'>
-                    <div className='post-content'>
+                    <div className='post-content' style={{fontSize: '17px', lineHeight: '1.6'}}>
                         <p>{post.text || 'Unknown Content'}</p>
                     </div>
                     <div className='post-info'>
