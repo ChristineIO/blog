@@ -143,9 +143,10 @@ userRoutes.route('/users/login').post(async (req, res) => {
 
 userRoutes.route('/users/logout').post(async (req, res) => {
     res.clearCookie('authToken', {
-        path: '/',
         httpOnly: true,
         sameSite: 'none',
+        secure: true,
+        path: '/'
     })
     return res.json({ success: 'Session Cleared' })
 })
