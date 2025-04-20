@@ -1,3 +1,8 @@
+html, body {
+    overflow: auto;
+    /* my fix to the random overflow:hidden */
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: 18px;
@@ -24,10 +29,10 @@
 
 ::selection {
     background: var(--indian-red);
-    color: #000;    
+    color: #000;
 }
 
 ::spelling-error {
     background: #f2d3d3;
-    color: #000;    
+    color: #000;
 }
