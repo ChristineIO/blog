@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import './styles/Post.css'
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 const OnePost = () => {
     const [post, setPost] = useState({})
@@ -63,7 +64,7 @@ const OnePost = () => {
             <div className="posts" style={{ minHeight: '0' }}>
                 <div className='post'>
                     <div className='post-content'>
-                        <ReactMarkdown>{post.text}</ReactMarkdown>
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.text}</ReactMarkdown>
                     </div>
                     <div className='post-info'>
                         <div className='user'>

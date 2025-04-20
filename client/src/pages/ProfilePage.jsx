@@ -13,6 +13,7 @@ import './styles/ProfilePage.css'
 import MenuButton from "../components/Buttons/MenuButton"
 import Dropdown from "../components/Dropdown/Dropdown"
 import ReactMarkdown from "react-markdown"
+import remarkGfm from "remark-gfm"
 
 const ProfilePage = () => {
     const [posts, setPosts] = useState([])
@@ -92,7 +93,7 @@ const ProfilePage = () => {
                         <div className='post' key={index}>
                             <Link to={`/spaces/posts/${post._id}`}>
                                 <div className='post-content'>
-                                    <ReactMarkdown>{truncateText(post.text, 33)}</ReactMarkdown>
+                                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{truncateText(post.text, 33)}</ReactMarkdown>
                                 </div>
                                 <div className='post-info'>
                                     <div className='user'>

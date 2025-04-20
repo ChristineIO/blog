@@ -8,6 +8,7 @@ import { checkAuth } from "../api"
 import MenuButton from "../components/Buttons/MenuButton"
 import Dropdown from "../components/Dropdown/Dropdown"
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 const Posts = () => {
     const [posts, setPost] = useState([])
@@ -96,7 +97,7 @@ const Posts = () => {
                     <div className='post' key={post._id}>
                         <Link to={`/posts/${post._id}`}>
                             <div className='post-content'>
-                                <ReactMarkdown>{truncateText(post.text, 70)}</ReactMarkdown>
+                                <ReactMarkdown remarkPlugins={[remarkGfm]}>{truncateText(post.text, 70)}</ReactMarkdown>
                             </div>
                             <div className='post-info'>
                                 <div className='user'>
