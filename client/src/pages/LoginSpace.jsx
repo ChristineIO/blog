@@ -47,13 +47,11 @@ const LoginSpace = () => {
             let stringPosts = JSON.stringify(posts)
 
             let spaceName = response.data.name
-            console.log(`response.data is ${stringPosts} abd ${spaceName}`)
             sessionStorage.setItem('spacePosts', stringPosts)
             sessionStorage.setItem('spaceName', spaceName)
             navigate(`/spaces/${spaceName}`)
         }
         catch (error) {
-            console.log(error)
             setError(true)
         }
     }

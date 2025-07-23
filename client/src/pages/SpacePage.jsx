@@ -19,7 +19,6 @@ const SpacePage = () => {
         async function loadSpaceData() {
             let data = spaceName
             let response = await getSpace(data)
-            console.log(response)
             let spacePosts = response.data.space.posts
             setPosts(spacePosts)
         }

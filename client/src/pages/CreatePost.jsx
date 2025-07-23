@@ -71,7 +71,6 @@ const CreatePost = () => {
                 setSpaceBtn(false)
             }
             let mySpace = await getSpace(currentSpace)
-            console.log("createPostAction is " + JSON.stringify(mySpace.data))
             let posts = mySpace.data.space.posts
             let stringPosts = JSON.stringify(posts)
             sessionStorage.setItem('spacePosts', stringPosts)

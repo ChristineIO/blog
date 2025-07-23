@@ -24,7 +24,6 @@ const Posts = () => {
         .sort((a, b) => new Date(b.date) - new Date(a.date)) // im adding this to sort the newest first regardles
         .filter(post => {
             const postDate = new Date(post.date);
-            console.log(`post date = ${postDate}`)
 
             if (filterOption === "recent") {
                 const diffHours = (now - postDate) / (1000 * 60 * 60);

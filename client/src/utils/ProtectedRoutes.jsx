@@ -14,8 +14,7 @@ const ProtectedRoutes = () => {
         const verifyAuth = async () => {
             const auth = await checkAuth();
             if (!auth.data.success) {
-                navigate('/login');
-                console.log('not verified')
+                navigate('/login')
             } else if (auth.data.success) {
                 setIsAuth(auth);
             }

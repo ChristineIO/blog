@@ -6,7 +6,6 @@ if (import.meta.env.VITE_NODE_ENV == "production") {
 } else if (import.meta.env.VITE_NODE_ENV == "dev") {
     URL = "http://localhost:5000"
 }
-console.log("URL is " + URL)
 
 // spaces
 export async function getSpaces(data) {

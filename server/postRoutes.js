@@ -76,7 +76,6 @@ postRoutes.route('/spaces/posts').get(async (req, res) => {
         let posts = space.posts
         res.json({ success: true, posts })
     } else {
-        console.log('unacceptable data is ' + space)
         res.status(404).json({ success: false, message: 'Space not found' })
      }
 
@@ -97,10 +96,9 @@ postRoutes.route('/spaces/posts/:id').get(async (req, res) => {
             }
         })
     if (data) {
-        console.log(data + 'is the data')
         res.json(data)
     } else {
-        console.log('unacceptable data is ' + data)
+        console.error('failed')
     }
 })
 
@@ -177,7 +175,7 @@ postRoutes.route('/posts/:id').get(async (req, res) => {
     if (data) {
         res.json(data)
     } else {
-        console.log('unacceptable data is ' + data)
+        console.error('failed')
     }
 })
 

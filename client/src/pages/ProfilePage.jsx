@@ -36,10 +36,8 @@ const ProfilePage = () => {
             setPosts(userPosts)
             setUser(decode_user.username)
             setDate(decode_user.date)
-            console.log(decode_user.username)
             let userSpacePosts = await getUserSpacePosts(decode_user.username)
             let spaces = userSpacePosts
-            console.log(spaces)
             const postsByUser = spaces.flatMap(space =>
                 space.posts.filter(post => post.user === decode_user.username)
             );

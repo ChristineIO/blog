@@ -14,7 +14,6 @@ const cookieAge = 24 * 60 * 60 * 1000;
 userRoutes.route('/users').get(async (req, res) => {
     let db = database.getDb();
     let data = await db.collection('users').find({}).toArray()
-    console.log(data);
     if (data.length > 0) {
         res.json(data)
     } else {
@@ -41,8 +40,6 @@ userRoutes.route('/users/check-auth').get(async (req, res) => {
 
 userRoutes.route('/users/:id').get(async (req, res) => {
     const db = database.getDb();
-    console.log("Received ID:", req.params.id);
-    console.log("Type:", typeof req.params.id);
     // to prevent app from crashing check if id is in objectid format
     const query = {
         _id: ObjectId.isValid(req.params.id)
@@ -65,7 +62,6 @@ userRoutes.route('/users').post(async (req, res) => {
     const takenEmail = await db.collection('users').findOne({ email: req.body.email })
     if (takenUsername && takenEmail) {
         res.json({ error: "Email or/and Username already taken" })
-        console.log(takenUsername + " taken " + takenEmail)
     } else if (takenEmail) {
         res.json({error: "Taken Email"})
     } else if (takenUsername) {
